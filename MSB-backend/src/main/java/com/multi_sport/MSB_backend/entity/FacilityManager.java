@@ -8,4 +8,8 @@ import lombok.Setter;
 @Setter
 @Entity
 public class FacilityManager extends User {
+    private String city;
+    private String state;
+    private String postalCode;
+    private String country;
 }

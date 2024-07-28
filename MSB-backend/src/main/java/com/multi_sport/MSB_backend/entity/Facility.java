@@ -45,4 +45,9 @@ public class Facility {
 
     @OneToMany(mappedBy = "facility")
     private Set<Booking> bookings;
+
+    // Mapping back to FacilityManager
+    @ManyToOne
+    @JoinColumn
+    private FacilityManager facilityManager;
 }
