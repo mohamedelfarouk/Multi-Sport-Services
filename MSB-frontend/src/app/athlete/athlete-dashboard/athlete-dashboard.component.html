@@ -1,4 +1,4 @@
-<div [ngClass]="{'tab-group-container': selectedTabIndex===0}">
+<div [ngClass]="{ 'tab-group-container': selectedTabIndex === 0 }">
   <mat-tab-group (selectedTabChange)="onTabChange($event)">
     <mat-tab class="tab-content"
       ><ng-template mat-tab-label>
@@ -66,6 +66,7 @@
           <div class="button-row">
             <p>
               <button
+                class="sidenav-buttons"
                 mat-fab
                 extended
                 [ngClass]="{ 'shaded-button-facilities': isPressedFacilities }"
@@ -76,6 +77,7 @@
             </p>
             <p>
               <button
+                class="sidenav-buttons"
                 mat-fab
                 extended
                 [ngClass]="{ 'shaded-button-trainers': isPressedTrainers }"
@@ -86,6 +88,7 @@
             </p>
             <p>
               <button
+                class="sidenav-buttons"
                 mat-fab
                 extended
                 [ngClass]="{ 'shaded-button-events': isPressedEvents }"
@@ -96,6 +99,7 @@
             </p>
             <p>
               <button
+                class="sidenav-buttons"
                 mat-fab
                 extended
                 [ngClass]="{ 'shaded-button-teams': isPressedTeams }"
@@ -106,6 +110,7 @@
             </p>
             <p>
               <button
+                class="sidenav-buttons"
                 mat-fab
                 extended
                 [ngClass]="{ 'shaded-button-bookings': isPressedBookings }"
@@ -114,7 +119,9 @@
                 Bookings
               </button>
             </p>
-            <p><button mat-fab extended>Payment</button></p>
+            <p>
+              <button class="sidenav-buttons" mat-fab extended>Payment</button>
+            </p>
           </div>
         </mat-nav-list>
       </mat-sidenav>
