@@ -1,1 +1,67 @@
+.tab-group-container {
+  padding-left: 230px; /* Adjust the value as needed */
+  /* display: flex; */
+  .mat-tab-header {
+    display: flex; /* Ensure tabs are laid out in a flex container */
+  }
+}
+.tab-content {
+  flex-grow: 1;
+  padding: 160px;
+  overflow-y: visible;
+}
+
+.example-button-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  transition: background-color 0.3s ease;
+}
+.shaded-button-facilities {
+  background-color: #aacae6; /* Darker shade */
+}
+.shaded-button-trainers {
+  background-color: #aacae6; /* Darker shade */
+}
+.shaded-button-events {
+  background-color: #aacae6; /* Darker shade */
+}
+.shaded-button-bookings {
+  background-color: #aacae6 /* Darker shade */
+}
+.shaded-button-teams {
+  background-color: #aacae6 /* Darker shade */
+}
+.example-container {
+  display: flex;
+  flex-direction: column;
+  width: 10%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.example-is-mobile .example-toolbar {
+  position: fixed;
+  /* Make sure the toolbar will stay on top of the content as it scrolls past. */
+  /* z-index: 2; */
+}
+
+h1.example-app-name {
+  margin-left: 8px;
+}
+
+.example-sidenav-container {
+  /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
+     causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
+  flex: 1;
+}
+
+.example-is-mobile .example-sidenav-container {
+  /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
+     `<body>` to be our scrolling element for mobile layouts. */
+  flex: 1 0 auto;
+}
 

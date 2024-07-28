@@ -1,8 +1,145 @@
-<div class="tab-group-container">
-    <mat-tab-group>
-      <mat-tab label="Home"> Content 1 </mat-tab>
-      <mat-tab label="ghj"> Content 2 </mat-tab>
-      <mat-tab label="Third"> Content 3 </mat-tab>
-    </mat-tab-group>
+<div [ngClass]="{'tab-group-container': selectedTabIndex===0}">
+  <mat-tab-group (selectedTabChange)="onTabChange($event)">
+    <mat-tab class="tab-content"
+      ><ng-template mat-tab-label>
+        <mat-icon>home</mat-icon>
+      </ng-template>
+      <div *ngIf="isPressedFacilities">
+        <app-athlete-facilities></app-athlete-facilities>
+      </div>
+      <div *ngIf="isPressedBookings">
+        <app-athlete-bookings></app-athlete-bookings>
+      </div>
+      <div *ngIf="isPressedEvents">
+        <app-athlete-events></app-athlete-events>
+      </div>
+      <div *ngIf="isPressedTeams">
+        <app-athlete-teams></app-athlete-teams>
+      </div>
+      <div *ngIf="isPressedTrainers">
+        <app-athlete-trainers></app-athlete-trainers>
+      </div>
+    </mat-tab>
+    <mat-tab class="tab-content"
+      ><ng-template mat-tab-label>
+        <mat-icon>shopping_cart</mat-icon>
+      </ng-template>
+      Content 2
+    </mat-tab>
+    <mat-tab class="tab-content"
+      ><ng-template mat-tab-label>
+        <mat-icon>notifications</mat-icon>
+      </ng-template>
+      Content 3
+    </mat-tab>
+    <mat-tab class="tab-content"
+      ><ng-template mat-tab-label>
+        <mat-icon>account_circle</mat-icon>
+      </ng-template>
+      Content 4
+    </mat-tab>
+  </mat-tab-group>
+</div>
+<div *ngIf="selectedTabIndex === 0">
+  <div
+    class="example-container"
+    [class.example-is-mobile]="mobileQuery.matches"
+  >
+    <mat-toolbar class="example-toolbar">
+      <button mat-icon-button (click)="snav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <h1 class="example-app-name">MSS</h1>
+    </mat-toolbar>
+
+    <mat-sidenav-container
+      class="example-sidenav-container"
+      [style.marginTop.px]="mobileQuery.matches ? 56 : 0"
+    >
+      <mat-sidenav
+        #snav
+        [mode]="mobileQuery.matches ? 'over' : 'side'"
+        [fixedInViewport]="mobileQuery.matches"
+        fixedTopGap="56"
+      >
+        <mat-nav-list>
+          <div class="button-row">
+            <p>
+              <button
+                mat-fab
+                extended
+                [ngClass]="{ 'shaded-button-facilities': isPressedFacilities }"
+                (click)="toggleButtonFacilities()"
+              >
+                Facilities
+              </button>
+            </p>
+            <p>
+              <button
+                mat-fab
+                extended
+                [ngClass]="{ 'shaded-button-trainers': isPressedTrainers }"
+                (click)="toggleButtonTrainers()"
+              >
+                Trainers
+              </button>
+            </p>
+            <p>
+              <button
+                mat-fab
+                extended
+                [ngClass]="{ 'shaded-button-events': isPressedEvents }"
+                (click)="toggleButtonEvents()"
+              >
+                Events
+              </button>
+            </p>
+            <p>
+              <button
+                mat-fab
+                extended
+                [ngClass]="{ 'shaded-button-teams': isPressedTeams }"
+                (click)="toggleButtonTeams()"
+              >
+                Teams
+              </button>
+            </p>
+            <p>
+              <button
+                mat-fab
+                extended
+                [ngClass]="{ 'shaded-button-bookings': isPressedBookings }"
+                (click)="toggleButtonBookings()"
+              >
+                Bookings
+              </button>
+            </p>
+            <p><button mat-fab extended>Payment</button></p>
+          </div>
+        </mat-nav-list>
+      </mat-sidenav>
+
+      <mat-sidenav-content>
+        <!-- @for (content of fillerContent; track content) {
+      <p>{{ content }}</p>
+      } -->
+      </mat-sidenav-content>
+    </mat-sidenav-container>
   </div>
-  
+</div>
+<!-- </div>
+<div class="sidebar-container">
+  <mat-tab-group class="vertical-tab-group">
+    <mat-tab label="Home">Home Content</mat-tab>
+    <mat-tab label="Profile">Profile Content</mat-tab>
+    <mat-tab label="Settings">Settings Content</mat-tab>
+  </mat-tab-group>
+</div> -->
+<!-- </div>
+<div>
+<mdb-tabs [vertical]="true" (activeTabChange)="onTabChange($event)">
+  <mdb-tab title="Home">Home content</mdb-tab>
+  <mdb-tab title="Profile">Profile content</mdb-tab>
+  <mdb-tab title="Messages">Messages content</mdb-tab>
+</mdb-tabs>
+</div> -->
