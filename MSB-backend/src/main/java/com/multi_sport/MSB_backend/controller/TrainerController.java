@@ -1,20 +1,18 @@
 package com.multi_sport.MSB_backend.controller;
 
-import java.util.List;
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.multi_sport.MSB_backend.entity.Trainer;
 import com.multi_sport.MSB_backend.repository.AthleteRepository;
 import com.multi_sport.MSB_backend.repository.EventManagerRepository;
 import com.multi_sport.MSB_backend.repository.FacilityManagerRepository;
 import com.multi_sport.MSB_backend.repository.TrainerRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/trainers")
@@ -79,7 +77,6 @@ public class TrainerController {
     }
 
     @PutMapping("/{id}")
-    @Transactional
     public ResponseEntity<?> updateTrainer(@PathVariable Long id, @RequestBody Trainer trainerDetails) {
         Optional<Trainer> optionalTrainer = trainerRepository.findById(id);
 
@@ -110,7 +107,7 @@ public class TrainerController {
                 }
             }
 
-            // Update fields as necessary
+            // Update other fields as necessary
             if (trainerDetails.getFirstName() != null) {
                 trainer.setFirstName(trainerDetails.getFirstName());
             }
@@ -142,7 +139,7 @@ public class TrainerController {
             trainerRepository.delete(trainer.get());
             return new ResponseEntity<>("Trainer deleted successfully.", HttpStatus.NO_CONTENT);
         } else {
-            return new ResponseEntity<>("Trainer not found.", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Trainer not found", HttpStatus.NOT_FOUND);
         }
     }
 
@@ -159,7 +156,7 @@ public class TrainerController {
         } else if (username != null) {
             trainer = trainerRepository.findByUsername(username);
         } // else if (phoneNumber != null) {
-        // trainer = trainerRepository.findByPhoneNumber(phoneNumber);
+        //     trainer = trainerRepository.findByPhoneNumber(phoneNumber);
         // }
 
         return trainer.map(value -> new ResponseEntity<>(value.getUserId(), HttpStatus.OK))

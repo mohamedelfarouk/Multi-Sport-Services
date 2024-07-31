@@ -8,6 +8,6 @@ import java.util.List;
 
 @Repository
 public interface TeamParticipantRepository extends JpaRepository<TeamParticipant, Long> {
-    List<TeamParticipant> findByEventId(Long eventId);
-    List<TeamParticipant> findByTeamId(Long teamId);
+    List<TeamParticipant> findByEvent_EventId(Long eventId);
+    List<TeamParticipant> findByTeam_TeamId(Long teamId);
 }
