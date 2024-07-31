@@ -1,0 +1,50 @@
+
+<div class="container">
+<mat-card class="full-width-card" appearance="outlined">
+    <mat-card-header  >
+        <mat-card-title class="card-header">Create a New Team</mat-card-title>
+    </mat-card-header>
+    <mat-card-content >
+        <div class="form-container">
+        <mat-form-field class="full-width-form-field">
+              <mat-label>Team Name</mat-label>
+              <input matInput>
+            </mat-form-field>
+            <mat-form-field class="full-width-form-field">
+              <mat-label>Sport Name</mat-label>
+              <input matInput>
+            </mat-form-field>
+        </div>
+        <mat-form-field class="example-chip-list">
+            <mat-label class="custom-label">Other Team Members Emails</mat-label>
+            <mat-chip-grid #chipGrid aria-label="Enter emails" class="example-chip-list">
+              @for (teamMember of teamMembers(); track teamMember) {
+                <mat-chip-row
+                  (removed)="remove(teamMember)"
+                  [editable]="true"
+                  (edited)="edit(teamMember, $event)"
+                  [aria-description]="'press enter to edit ' + teamMember.email"
+                >
+                  {{teamMember.email}}
+                  <button matChipRemove [attr.aria-label]="'remove ' + teamMember.email" class="custom-button">
+                    <mat-icon>cancel</mat-icon>
+                  </button>
+                </mat-chip-row>
+              }
+              <input
+                placeholder="New Email..."
+                [matChipInputFor]="chipGrid"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                [matChipInputAddOnBlur]="addOnBlur"
+                (matChipInputTokenEnd)="add($event)"
+              />
+            </mat-chip-grid>
+          </mat-form-field>
+          <mat-card-actions align="end">
+            <button mat-raised-button>Create Team</button>
+            <!-- <button mat-raised-button>Add to Cart</button> -->
+          </mat-card-actions>
+    </mat-card-content>
+
+  </mat-card>
+</div>

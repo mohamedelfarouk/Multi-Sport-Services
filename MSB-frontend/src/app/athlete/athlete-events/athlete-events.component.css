@@ -1,0 +1,6 @@
+ .tab-content {
+    flex-grow: 1;
+    padding: 160px;
+    overflow-y: visible;
+  }
+  
