@@ -1,5 +1,6 @@
 package com.multi_sport.MSB_backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,33 +21,25 @@ public class Facility {
     @Column(name = "facility_id")
     private long facilityId;
 
-    @Column(name = "facility_name")
     private String facilityName;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "facility_type")
     private FacilityType facilityType;
 
     private String address;
-
     private String location;
-
-    @Column(name = "phone_number")
     private String phoneNumber;
-
     private String email;
-
-    private double ratings;
-
+    private Double ratings;
     private String amenities;
 
     @ManyToMany(mappedBy = "facilities")
     private Set<Event> events;
 
     @OneToMany(mappedBy = "facility")
+    @JsonManagedReference
     private Set<Booking> bookings;
 
-    // Mapping back to FacilityManager
     @ManyToOne
     @JoinColumn
     private FacilityManager facilityManager;
