@@ -1,0 +1,33 @@
+<div class="content" *ngFor="let item of items">
+    <mat-card class="card" appearance="outlined">
+      <mat-card-header>
+        <mat-card-title class="card-header">Team {{item}} name</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="card-content">
+        <p>Team describtion</p>
+      </mat-card-content>
+      <mat-card-footer class="example-card-footer">
+        <mat-chip-set>
+          <mat-chip class="custom-chip">
+            <mat-icon class="sport-icon">sports_soccer</mat-icon>
+            <span class="date-text">Sport Name</span>
+          </mat-chip>
+          <mat-chip class="custom-chip">
+            <mat-icon class="date-icon">tag</mat-icon>
+            <span class="money-text">11 </span>Members
+          </mat-chip>
+        </mat-chip-set>
+  
+        <mat-chip-set>
+          <mat-chip>charming</mat-chip>
+          <mat-chip>graceful</mat-chip>
+          <mat-chip>sassy</mat-chip>
+        </mat-chip-set>
+        <mat-card-actions align="end">
+          <button mat-raised-button>Request to Join Team</button>
+          <button mat-raised-button>Learn More</button>
+        </mat-card-actions>
+      </mat-card-footer>
+    </mat-card>
+  </div>
+    
