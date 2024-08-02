@@ -1,25 +1,16 @@
 package com.multi_sport.MSB_backend.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Embeddable;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-@Entity
+@Embeddable
 public class TrainerPackage {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "package_id")
-    private Long packageId;
-
-    @ManyToOne
-    @JoinColumn(name = "trainer_id")
-    private Trainer trainer;
 
     private String name;
     private String description;
-    private double price;
-    private boolean isLongTerm;
+    private Double price;
+    private Boolean isLongTerm;
 }
-

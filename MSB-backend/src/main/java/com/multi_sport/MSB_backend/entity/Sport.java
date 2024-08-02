@@ -18,7 +18,7 @@ public class Sport {
     @Column(name = "sport_id")
     private long id;
     
-    @Column(name = "sport_name")
+    @Column(name = "sport_name",unique = true)
     private String name;
 
     @Enumerated(EnumType.STRING)

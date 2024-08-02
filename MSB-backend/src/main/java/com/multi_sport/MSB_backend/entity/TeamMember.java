@@ -1,5 +1,6 @@
 package com.multi_sport.MSB_backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,25 +23,21 @@ public class TeamMember {
 
     @ManyToOne
     @JoinColumn(name = "team_id")
+    @JsonBackReference
     private Team team;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private Athlete user;
 
     @Column(name = "join_date", updatable = false)
     private Date joinDate;
 
+    @Column(name = "is_captain")
+    private boolean isCaptain;
+
     @PrePersist
     protected void onJoin() {
         this.joinDate = new Date();
-    }
-
-    public void setTeam(Team team) {
-        this.team = team;
-        if (team != null) {
-        	team.getTeamMembers().add(this);
-            team.setNumberOfMembers(team.getTeamMembers().size());
-        }
     }
 }

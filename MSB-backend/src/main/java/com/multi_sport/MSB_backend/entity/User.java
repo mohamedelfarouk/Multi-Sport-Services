@@ -25,9 +25,12 @@ public abstract class User {
     
     private String name;
     
+    @Column(name = "email", unique = true, nullable = false)
     private String email;
     
+    @Column(name = "username", unique = true, nullable = false)
     private String username;
+    
     
     @Column(name = "birth_date")
     private Date birthDate;
@@ -39,13 +42,7 @@ public abstract class User {
     private String phoneNumber;
     
     private String password;
-    
-    @Column(name = "number_of_following")
-    private int numFollowing;
 
-    @Column(name = "number_of_followers")	
-	private int numFollowers;
-    
     @ManyToMany
     @JoinTable(
         name = "user_following",
@@ -56,8 +53,8 @@ public abstract class User {
 
     @ManyToMany(mappedBy = "following")
     private Set<User> followers;
-	
-	private String gender;
+
+    private String gender;
 
     @Column(nullable = true)
     private String address;
@@ -69,5 +66,15 @@ public abstract class User {
         if (this.creationDate == null) {
             this.creationDate = new Date();
         }
+    }
+
+    @Transient
+    public Integer getNumFollowing() {
+        return following != null ? following.size() : 0;
+    }
+
+    @Transient
+    public Integer getNumFollowers() {
+        return followers != null ? followers.size() : 0;
     }
 }

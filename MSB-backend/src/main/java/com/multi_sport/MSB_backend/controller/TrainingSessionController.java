@@ -1,57 +1,89 @@
 package com.multi_sport.MSB_backend.controller;
 
-import com.multi_sport.MSB_backend.entity.*;
-import com.multi_sport.MSB_backend.service.TrainingSessionService;
-
+import com.multi_sport.MSB_backend.entity.TrainingSession;
+import com.multi_sport.MSB_backend.repository.TrainingSessionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/api/training-sessions")
 public class TrainingSessionController {
 
     @Autowired
-    private TrainingSessionService trainingSessionService;
+    private TrainingSessionRepository trainingSessionRepository;
 
-    @GetMapping("/trainer/{trainerId}")
-    public List<TrainingSession> getUpcomingSessionsByTrainerId(@PathVariable Long trainerId) {
+    @PostMapping("/new")
+    public ResponseEntity<TrainingSession> createTrainingSession(@RequestBody TrainingSession trainingSession) {
         try {
-            return trainingSessionService.getUpcomingSessionsByTrainerId(trainerId);
+            TrainingSession savedSession = trainingSessionRepository.save(trainingSession);
+            return new ResponseEntity<>(savedSession, HttpStatus.CREATED);
         } catch (Exception e) {
-            e.printStackTrace();
-            throw e;
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    @PostMapping("/{sessionId}/price")
-    public void setSessionPrice(@PathVariable Long sessionId, @RequestBody double price) {
-        trainingSessionService.setSessionPrice(sessionId, price);
+    @GetMapping
+    public List<TrainingSession> getAllTrainingSessions() {
+        return trainingSessionRepository.findAll();
     }
 
-    @GetMapping("/{sessionId}/discount/{athleteId}")
-    public double getDiscountedPrice(@PathVariable Long sessionId, @PathVariable Long athleteId) {
-        return trainingSessionService.applyDiscount(sessionId, athleteId);
+    @GetMapping("/{id}")
+    public ResponseEntity<TrainingSession> getTrainingSessionById(@PathVariable Long id) {
+        Optional<TrainingSession> trainingSession = trainingSessionRepository.findById(id);
+        return trainingSession.map(session -> new ResponseEntity<>(session, HttpStatus.OK))
+                              .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @GetMapping("/package-discount/{packageId}/{athleteId}")
-    public double getPackageDiscountedPrice(@PathVariable Long packageId, @PathVariable Long athleteId) {
-        return trainingSessionService.applyPackageDiscount(packageId, athleteId);
+    @PutMapping("/{id}")
+    public ResponseEntity<TrainingSession> updateTrainingSession(@PathVariable Long id, @RequestBody TrainingSession sessionDetails) {
+        Optional<TrainingSession> optionalSession = trainingSessionRepository.findById(id);
+
+        if (optionalSession.isPresent()) {
+            TrainingSession trainingSession = optionalSession.get();
+
+            if (sessionDetails.getCost() != null) {
+                trainingSession.setCost(sessionDetails.getCost());
+            }
+            if (sessionDetails.getTrainer() != null) {
+                trainingSession.setTrainer(sessionDetails.getTrainer());
+            }
+            if (sessionDetails.getAthlete() != null) {
+                trainingSession.setAthlete(sessionDetails.getAthlete());
+            }
+            if (sessionDetails.getSessionType() != null) {
+                trainingSession.setSessionType(sessionDetails.getSessionType());
+            }
+            if (sessionDetails.getStartTime() != null) {
+                trainingSession.setStartTime(sessionDetails.getStartTime());
+            }
+            if (sessionDetails.getEndTime() != null) {
+                trainingSession.setEndTime(sessionDetails.getEndTime());
+            }
+            if (sessionDetails.getSessionDate() != null) {
+                trainingSession.setSessionDate(sessionDetails.getSessionDate());
+            }
+
+            TrainingSession updatedSession = trainingSessionRepository.save(trainingSession);
+            return new ResponseEntity<>(updatedSession, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
-    @PostMapping
-    public TrainingSession createSession(@RequestBody TrainingSession session) {
-        return trainingSessionService.createSession(session);
-    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteTrainingSession(@PathVariable Long id) {
+        Optional<TrainingSession> trainingSession = trainingSessionRepository.findById(id);
 
-    @PutMapping("/{sessionId}")
-    public TrainingSession updateSession(@PathVariable Long sessionId, @RequestBody TrainingSession sessionDetails) {
-        return trainingSessionService.updateSession(sessionId, sessionDetails);
-    }
-
-    @DeleteMapping("/{sessionId}")
-    public void deleteSession(@PathVariable Long sessionId) {
-        trainingSessionService.deleteSession(sessionId);
+        if (trainingSession.isPresent()) {
+            trainingSessionRepository.delete(trainingSession.get());
+            return new ResponseEntity<>("Training session deleted successfully.", HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>("Training session not found.", HttpStatus.NOT_FOUND);
+        }
     }
 }
-
