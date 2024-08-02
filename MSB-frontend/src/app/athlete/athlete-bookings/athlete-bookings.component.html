@@ -1,1 +1,44 @@
-<p>athlete-bookings works!</p>
+<div class="content" *ngFor="let item of bookings; let i = index">
+  <mat-card class="card" appearance="outlined">
+    <mat-card-header>
+      <mat-card-title class="card-header"
+        >{{ i + 1 }}-{{ item.name }}</mat-card-title
+      >
+    </mat-card-header>
+
+    <mat-card-footer class="example-card-footer">
+      <mat-chip-set>
+        <mat-chip class="custom-chip"
+          ><span class="type-chip"> {{ item.type }} </span></mat-chip
+        >
+      </mat-chip-set>
+      <mat-list>
+        <mat-list-item>
+          <span matListItemTitle>Booking Date:</span>
+          <span matListItemLine class="info-line">{{ item.bookingDate }}</span>
+        </mat-list-item>
+        <mat-list-item>
+          <span matListItemTitle>Payment Status:</span>
+          <span class="info-line">{{ item.paymentStatus }} </span>
+        </mat-list-item>
+        <mat-list-item>
+          <span matListItemTitle>Cost:</span>
+          <span class="info-line"> {{ item.cost }}</span>
+        </mat-list-item>
+        <mat-list-item>
+          <span matListItemTitle>Start Time:</span>
+          <span class="info-line">{{ item.startTime }}</span>
+        </mat-list-item>
+        <mat-list-item>
+          <span matListItemTitle>End Time:</span>
+          <span class="info-line"> {{ item.endTime }}</span>
+        </mat-list-item>
+      </mat-list>
+      <mat-card-actions align="end">
+        <button mat-raised-button color="warn" (click)="openDialog()">
+          Remove Booking
+        </button>
+      </mat-card-actions>
+    </mat-card-footer>
+  </mat-card>
+</div>

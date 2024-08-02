@@ -1,0 +1,45 @@
+.content {
+    /* display: flex; */
+    padding: 8px;
+    padding-left: 16px;
+  }
+  .card {
+    background-color: #f5f5f5; /* Light background color */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Add shading */
+    padding: 16px; /* Optional: Padding for better look */
+    border-radius: 50px; /* Optional: Rounded corners */
+    display: flexbox;
+    min-height: 250px;
+  }
+  
+  .card-footer {
+    padding: 26px;
+  }
+  .card-header {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: xx-large;
+    padding: 16px;
+  }
+  .custom-chip {
+    /* display: flex; */
+    align-items: center;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Add shading */
+    background-color: #ffffff; /* Optional: Light background color */
+    height: 48px; /* Adjust height */
+    line-height: 48px; /* Adjust line-height to center text vertically */
+    padding: 0 16px;
+  }
+  
+
+  .type-chip {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    color: #0074d9;
+  }
+ .info-line{
+    color: #0074d9;
+ }
+  
