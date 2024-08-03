@@ -5,8 +5,6 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatGridListModule } from '@angular/material/grid-list';
-import {MatListModule} from '@angular/material/list';
-
 import { CommonModule } from '@angular/common';
 import {
   MatDialog,
@@ -16,12 +14,13 @@ import {
   MatDialogRef,
   MatDialogTitle,
 } from '@angular/material/dialog';
-import { Booking } from './Booking';
-
+import { Event } from './Event';
+import { Trainer } from './Trainer';
+import { Facility } from './Facility';
 @Component({
-  selector: 'app-athlete-bookings',
+  selector: 'app-athlete-cart',
   standalone: true,
-  imports: [MatListModule,
+  imports: [
     MatCardModule,
     MatChipsModule,
     MatProgressBarModule,
@@ -30,17 +29,33 @@ import { Booking } from './Booking';
     MatGridListModule,
     CommonModule,
   ],
-    templateUrl: './athlete-bookings.component.html',
-  styleUrl: './athlete-bookings.component.css'
+  templateUrl: './athlete-cart.component.html',
+  styleUrl: './athlete-cart.component.css',
 })
-export class AthleteBookingsComponent {
-  bookings = [
-new Booking("event name","Event","12/12/2023","Paid",1000,"15/12/2023","16/12/2023"),
-new Booking("facility name" ,"Facility package","12/12/2023","Paid",4000,"15/12/2023","16/12/2023"),
-new Booking("Trainer name" ,"Trainer package","12/12/2023","Paid",5000,"15/12/2023","16/12/2023"),
-
+export class AthleteCartComponent {
+  cartItems = [
+    new Event('event name', '12/11/2024 : 13/11/2024', 1000),
+    new Event('event name', '11/11/2024 : 13/11/2024', 2000),
+    new Trainer('trainer name', '11/7/2024 : 13/8/2024', 500),
+    new Facility('facility name', 2000),
   ];
+  totalCost(){
+   let sum=0;
+   this.cartItems.forEach(element => {
+    sum+=element.price;
+   });
+return sum;
+  }
+  isEvent(item: any): item is Event {
+    return item instanceof Event;
+  }
 
+  isTrainer(item: any): item is Trainer {
+    return item instanceof Trainer;
+  }
+  isFacility(item: any): item is Facility {
+    return item instanceof Facility;
+  }
   readonly dialog = inject(MatDialog);
 
   openDialog(): void {

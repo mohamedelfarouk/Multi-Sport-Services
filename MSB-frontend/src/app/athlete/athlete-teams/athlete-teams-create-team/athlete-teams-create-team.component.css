@@ -18,6 +18,7 @@
   /* max-width: 600px; Optional: Set a max-width for better readability */
   display: flex;
   /* flex-direction: column;   */
+  background-color: rgb(235, 235, 235);
 }
 
 .full-width-form-field mat-form-field + mat-form-field {
