@@ -19,8 +19,5 @@ public class Athlete extends User {
         joinColumns = @JoinColumn(name = "user_id"),
         inverseJoinColumns = @JoinColumn(name = "sport_id")
     )
-    private Set<Sport> sports;
-    
-    private boolean hasPaidForSessions;  
-    private boolean isLongTermClient;  
+    private Set<Sport> sports;  
 }

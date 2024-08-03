@@ -13,8 +13,8 @@ import java.util.Date;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "participant")
-public class Participant {
+@Table(name = "individual_participant")
+public class IndividualParticipant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "participant_id")
@@ -26,7 +26,7 @@ public class Participant {
 
     @ManyToOne
     @JoinColumn(name = "athlete_id")
-    private User athlete;
+    private Athlete athlete;
 
     @Column(name = "registration_date")
     private Date registrationDate;

@@ -1,5 +1,6 @@
 package com.multi_sport.MSB_backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
@@ -27,22 +29,20 @@ public class Team {
     @JoinColumn(name = "sport_id")
     private Sport sport;
 
-    @ManyToOne
-    @JoinColumn(name = "captain_id")
-    private User captain;
-
     @Column(name = "creation_date", updatable = false)
     private Date creationDate;
 
     @OneToMany(mappedBy = "team", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<TeamMember> teamMembers;
+    @JsonManagedReference
+    private Set<TeamMember> teamMembers = new HashSet<>();
 
     @Column(name = "number_of_members")
-    private int numberOfMembers;
+    private Integer numberOfMembers;
 
     @PrePersist
     protected void onCreate() {
         this.creationDate = new Date();
+        this.numberOfMembers = teamMembers.size();
     }
 
     public void addTeamMember(TeamMember teamMember) {

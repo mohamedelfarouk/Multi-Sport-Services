@@ -1,5 +1,6 @@
 package com.multi_sport.MSB_backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,31 +22,27 @@ public class Booking {
     private long bookingId;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @JoinColumn(name = "athlete_id", nullable = true)
+    private Athlete athlete;
+    
+    @ManyToOne
+    @JoinColumn(name = "trainer_id", nullable = true)
+    private Trainer trainer;    
 
     @ManyToOne
     @JoinColumn(name = "facility_id")
+    @JsonBackReference
     private Facility facility;
 
-    @Column(name = "booking_date")
     private Date bookingDate;
-
-    @Column(name = "start_time")
     private Date startTime;
-
-    @Column(name = "end_time")
     private Date endTime;
-
-    @Column(name = "total_cost")
-    private double totalCost;
+    private Double totalCost;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "payment_status")
     private PaymentStatus paymentStatus;
 
-    @Column(name = "is_session")
-    private boolean isSession;
+    private Boolean isSession;
 
     @PrePersist
     protected void onBook() {

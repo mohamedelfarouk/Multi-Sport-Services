@@ -1,0 +1,71 @@
+.content{
+    /* display: flex; */
+}
+.example-header-image {
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdSJJ7LNf_NKIfrmt4u79jGbSQWbVY98_vzQ&s');
+    background-size: cover;
+  }
+.card {
+    background-color: #f5f5f5; /* Light background color */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Add shading */
+  padding: 16px; /* Optional: Padding for better look */
+  border-radius: 18px; /* Optional: Rounded corners */
+    max-width: 1400px;
+  }
+  
+  .card-footer {
+    padding: 26px;
+  }
+  .card-header{
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+  }
+  .custom-chip {
+    display: flex;
+    align-items: center;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Add shading */
+    background-color: #ffffff; /* Optional: Light background color */
+    padding: 5px; /* Optional: Padding for better look */
+    border-radius: 16px; /* Optional: Rounded corners */
+  }
+  
+  .date-icon {
+    color: #0074D9; 
+    margin-right: 8px;
+    font-size: 26px; /* Adjust size as needed */
+  }
+  
+  .date-text {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 1; /* Adjust as needed to move text up */
+    position: relative;
+    top: -2px; /*Adjust the value to move the text up*/
+  }
+  .money-text {
+    /* display: inline-block; */
+    /* vertical-align: middle; */
+    line-height: 1; /* Adjust as needed to move text up */
+    position: relative;
+    top: -2px; /*Adjust the value to move the text up*/
+    font-size: large ;
+  }
+  .sport-icon {
+    color: #021729; /* Warm blue color */
+    margin-right: 8px;
+    font-size: 26px; /* Adjust size as needed */
+  }
+  .location-icon {
+    color: #ac0000; 
+    margin-right: 8px;
+    font-size: 26px; /* Adjust size as needed */
+  }
+  .money-icon {
+    color: #00ac2b; 
+    margin-right: 8px;
+    font-size: 26px; /* Adjust size as needed */
+  }
+  
+  
+  

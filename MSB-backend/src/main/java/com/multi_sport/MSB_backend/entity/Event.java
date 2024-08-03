@@ -27,7 +27,7 @@ public class Event {
     private String description;
 
     @Column(name = "registration_fee")
-    private double registrationFee;
+    private Double registrationFee;
 
     @Column(name = "start_date")
     private Date startDate;
@@ -35,14 +35,14 @@ public class Event {
     @Column(name = "end_date")
     private Date endDate;
 
-    private int duration; // Assuming duration is in hours
+    private Integer duration; // Assuming duration is in hours
 
     @Column(name = "max_participants")
-    private int maxParticipants;
+    private Integer maxParticipants;
 
     @ManyToOne
     @JoinColumn(name = "organizer_id")
-    private User organizer;
+    private EventManager organizer;
 
     @ManyToMany
     @JoinTable(
@@ -52,6 +52,22 @@ public class Event {
     )
     private Set<Facility> facilities;
 
-    @OneToMany(mappedBy = "event")
-    private Set<Participant> participants;
+    @Column(name = "is_individual")
+    private boolean isIndividual;
+
+    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<IndividualParticipant> individualParticipants;
+
+    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<TeamParticipant> teamParticipants;
+
+    public void setParticipants(Set<IndividualParticipant> individualParticipants, Set<TeamParticipant> teamParticipants) {
+        if (isIndividual) {
+            this.individualParticipants = individualParticipants;
+            this.teamParticipants = null;
+        } else {
+            this.individualParticipants = null;
+            this.teamParticipants = teamParticipants;
+        }
+    }
 }

@@ -1,1 +1,8 @@
-<p>athlete-teams works!</p>
+<div class="tab-group-container">
+    <mat-tab-group (selectedTabChange)="onTabChange($event)">
+      <mat-tab label="My Teams" class="tab-content"> <app-athlete-teams-my-teams></app-athlete-teams-my-teams> </mat-tab>
+      <mat-tab label="Join Teams" class="tab-content"> <app-athlete-teams-join-teams> </app-athlete-teams-join-teams> </mat-tab>
+      <mat-tab label="Create Teams" class="tab-content"> <app-athlete-teams-create-team></app-athlete-teams-create-team> </mat-tab>
+
+    </mat-tab-group>
+  </div>

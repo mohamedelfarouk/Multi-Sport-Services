@@ -20,15 +20,15 @@ public class TrainingSession {
     @Column(name = "session_id")
     private long sessionId;
 
-    private double cost;
+    private Double cost;
 
     @ManyToOne
     @JoinColumn(name = "trainer_id")
-    private User trainer;
+    private Trainer trainer;
 
     @ManyToOne
     @JoinColumn(name = "athlete_id")
-    private User athlete;
+    private Athlete athlete;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "session_type")

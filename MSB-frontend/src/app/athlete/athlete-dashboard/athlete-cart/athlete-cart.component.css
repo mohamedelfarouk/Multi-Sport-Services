@@ -1,0 +1,108 @@
+.content {
+  /* display: flex; */
+  padding: 8px;
+  padding-left: 16px;
+}
+.card {
+  background-color: #f5f5f5; /* Light background color */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Add shading */
+  padding: 16px; /* Optional: Padding for better look */
+  border-radius: 50px; /* Optional: Rounded corners */
+  display: flexbox;
+  height: 250px;
+}
+
+.card-footer {
+  padding: 26px;
+}
+.card-header {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: xx-large;
+  padding: 16px;
+}
+.custom-chip {
+  /* display: flex; */
+  align-items: center;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Add shading */
+  background-color: #ffffff; /* Optional: Light background color */
+  height: 48px; /* Adjust height */
+  line-height: 48px; /* Adjust line-height to center text vertically */
+  padding: 0 16px;
+}
+
+.date-icon {
+  color: #0074d9;
+  margin-right: 8px;
+  font-size: 26px; /* Adjust size as needed */
+}
+
+.date-text {
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  top: -2px; /*Adjust the value to move the text up*/
+  height: 48px; /* Adjust height */
+  line-height: 48px; /* Adjust line-height to center text vertically */
+  font-size: 18px; /* Adjust font size */
+  padding: 0 16px;
+}
+.type-chip {
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  color: #0074d9;
+}
+.money-text {
+  /* display: inline-block; */
+  /* vertical-align: middle; */
+  line-height: 1; /* Adjust as needed to move text up */
+  position: relative;
+  top: -2px; /*Adjust the value to move the text up*/
+  font-size: large;
+  color: #2c8f13;
+}
+.sport-icon {
+  color: #021729; /* Warm blue color */
+  margin-right: 8px;
+  font-size: 26px; /* Adjust size as needed */
+}
+.location-icon {
+  color: #ac0000;
+  margin-right: 8px;
+  font-size: 26px; /* Adjust size as needed */
+}
+.money-icon {
+  color: #00ac2b;
+  margin-right: 8px;
+  font-size: 26px; /* Adjust size as needed */
+}
+.custom-green-fab {
+  background-color: #4caf50; /* Green color */
+  color: white;
+  display: flexbox;
+}
+
+.custom-green-fab:hover {
+  background-color: #388e3c; /* Darker green on hover */
+}
+.cost-chip {
+  width: 85%;
+  padding: 10px;
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 40px;
+  background-color: #dfe2df;
+}
+.cost-text {
+  font-size: 25px;
+  color: #0c3038;
+}
+.cost-checkout{
+    font-size: 25px;
+    color: #2c8f13;
+}
+.checkout-footer {
+  padding-left: 16px;
+}
