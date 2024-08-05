@@ -1,0 +1,47 @@
+<form [formGroup]="sessionForm" (ngSubmit)="fetchSession()" class="training-form">
+  <label for="sessionId" class="form-label">Enter Session ID:</label>
+  <input id="sessionId" formControlName="sessionId" type="number" class="form-input" placeholder="Enter session ID" />
+  <button type="submit" class="form-button">Fetch Session</button>
+</form>
+
+<div *ngIf="errorMessage">
+  <p class="error-message">{{ errorMessage }}</p>
+</div>
+
+<div *ngIf="trainingSession">
+  <h2>Training Session Details</h2>
+  <table class="session-details-table">
+    <tr>
+      <th>ID</th>
+      <td>{{ trainingSession.sessionId }}</td>
+    </tr>
+    <tr>
+      <th>Cost</th>
+      <td>{{ trainingSession.cost | currency }}</td>
+    </tr>
+    <tr>
+      <th>Trainer ID</th>
+      <td>{{ trainingSession.trainer.userId }}</td>
+    </tr>
+    <tr>
+      <th>Athlete ID</th>
+      <td>{{ trainingSession.athlete.userId }}</td>
+    </tr>
+    <tr>
+      <th>Session Type</th>
+      <td>{{ trainingSession.sessionType }}</td>
+    </tr>
+    <tr>
+      <th>Start Time</th>
+      <td>{{ trainingSession.startTime | date:'short' }}</td>
+    </tr>
+    <tr>
+      <th>End Time</th>
+      <td>{{ trainingSession.endTime | date:'short' }}</td>
+    </tr>
+    <tr>
+      <th>Session Date</th>
+      <td>{{ trainingSession.sessionDate | date:'shortDate' }}</td>
+    </tr>
+  </table>
+</div>

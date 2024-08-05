@@ -1,0 +1,42 @@
+<form [formGroup]="sessionForm" (ngSubmit)="onSubmit()">
+  <table>
+    <tr>
+      <td><label for="cost">Cost:</label></td>
+      <td><input id="cost" formControlName="cost" type="number" required></td>
+    </tr>
+    <tr>
+      <td><label for="trainerId">Trainer ID:</label></td>
+      <td><input id="trainerId" formControlName="trainerId" type="number" required></td>
+    </tr>
+    <tr>
+      <td><label for="athleteId">Athlete ID:</label></td>
+      <td><input id="athleteId" formControlName="athleteId" type="number" required></td>
+    </tr>
+    <tr>
+      <td><label for="sessionType">Session Type:</label></td>
+      <td>
+        <select id="sessionType" formControlName="sessionType" required>
+          <option value="GROUP">GROUP</option>
+          <option value="PRIVATE">PRIVATE</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td><label for="startTime">Start Time:</label></td>
+      <td><input id="startTime" formControlName="startTime" type="time" required></td>
+    </tr>
+    <tr>
+      <td><label for="endTime">End Time:</label></td>
+      <td><input id="endTime" formControlName="endTime" type="time" required></td>
+    </tr>
+    <tr>
+      <td><label for="sessionDate">Session Date:</label></td>
+      <td><input id="sessionDate" formControlName="sessionDate" type="date" required></td>
+    </tr>
+    <tr>
+      <td colspan="2" style="text-align: center;">
+        <button type="submit">Save Session</button>
+      </td>
+    </tr>
+  </table>
+</form>
