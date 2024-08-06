@@ -65,6 +65,21 @@
     /* margin-left: 760px; Space between text and image */
     right: -680px;
   }
+
+  .example-form {
+
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+  mat-form-field {
+    position: relative;
+  }
+
+  
+  
   
   
   

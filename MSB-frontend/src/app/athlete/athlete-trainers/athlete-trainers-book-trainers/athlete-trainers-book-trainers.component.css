@@ -25,7 +25,7 @@
     display: flex;
     align-items: center;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Add shading */
-    background-color: #dad7d7; /* Optional: Light background color */
+    background-color: #ffffff; /* Optional: Light background color */
     padding: 5px; /* Optional: Padding for better look */
     border-radius: 16px; /* Optional: Rounded corners */
   }

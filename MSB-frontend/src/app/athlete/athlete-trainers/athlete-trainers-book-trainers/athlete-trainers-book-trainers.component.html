@@ -1,8 +1,8 @@
-<div class="content" *ngFor="let item of items">
+<div class="content" *ngFor="let trainer of trainers">
     <mat-card class="card" appearance="outlined">
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title class="card-header">trainer {{item}} name</mat-card-title>
+        <mat-card-title class="card-header">{{trainer.name}} </mat-card-title>
       </mat-card-header>
       <mat-card-content class="card-content">
       </mat-card-content>
@@ -10,19 +10,19 @@
         <mat-chip-set>
             <mat-chip class="custom-chip">
               <mat-icon class="sport-icon">sports_soccer </mat-icon>
-              <span class="date-text">Sport Type</span>
+              <span class="date-text"></span>
             </mat-chip>
             <mat-chip class="custom-chip">
               <mat-icon class="date-icon">phone</mat-icon>
-              <span class="date-text">01201055547</span>
+              <span class="date-text">{{trainer.phoneNumber}}</span>
             </mat-chip>
             <mat-chip class="custom-chip">
               <mat-icon class="location-icon">location_on</mat-icon>
-              <span class="date-text">Cairo, Egypt</span>
+              <span class="date-text">{{trainer.address}}</span>
             </mat-chip>
             <mat-chip class="custom-chip">
               <mat-icon class="location-icon">email</mat-icon>
-              <span class="date-text">{{email}} </span> 
+              <span class="date-text">{{trainer.email}} </span> 
             </mat-chip>
           </mat-chip-set>
   
@@ -33,7 +33,7 @@
         </mat-chip-set>
         <mat-card-actions align="end">
           <button mat-raised-button>See Packages</button>
-          <!-- <button mat-raised-button>Add to Cart</button> -->
+          <button mat-raised-button (click)="addTrainerToMyTrainers(trainer)">Add to My Trainers</button>
         </mat-card-actions>
       </mat-card-footer>
     </mat-card>

@@ -139,6 +139,10 @@
     </div>
   </ng-container>
   <ng-container *ngIf="selectedTabIndex === 1"> <app-athlete-cart></app-athlete-cart> </ng-container>
-  <ng-container *ngIf="selectedTabIndex === 2"> notifications </ng-container>
-  <ng-container *ngIf="selectedTabIndex === 3"> <app-athlete-profile></app-athlete-profile> </ng-container>
+  <ng-container *ngIf="selectedTabIndex === 2"> <app-athlete-notifications></app-athlete-notifications> </ng-container>
+  <ng-container *ngIf="selectedTabIndex === 3"> 
+    <ng-container *ngIf="isEditProfilePressed">
+      <app-athlete-edit-profile></app-athlete-edit-profile>
+    </ng-container>
+    <app-athlete-profile></app-athlete-profile> </ng-container>
 </div>

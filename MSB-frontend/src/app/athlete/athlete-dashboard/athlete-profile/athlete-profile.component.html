@@ -1,10 +1,10 @@
 <div class="content">
   <mat-card class="card" appearance="outlined">
     <mat-card-header class="card-header-container">
-      <mat-card-title class="card-header">Habiba Naser</mat-card-title>
+      <mat-card-title class="card-header">{{athlete.firstName}} {{athlete.lastName}}</mat-card-title>
       <img
         mat-card-sm-image
-        src="https://img.freepik.com/free-photo/close-up-beautiful-woman-face-with-natural-makeup-relaxed-expression-standing-beige-backgr_1258-64561.jpg"
+        src="https://media.istockphoto.com/id/519998671/photo/serious-about-his-fitness.jpg?s=612x612&w=0&k=20&c=oO7B4UtkN-vSxrXTBMtChwc16g8ILoHQU0rh-EZElLY="
         alt="Round Image"
         class="right-image"
       />
@@ -14,36 +14,48 @@
         <mat-list>
           <mat-list-item>
             <span matListItemTitle class="info-title">Username:</span>
-            <span matListItemLine class="info-line">habibanaser</span>
+            <span matListItemLine class="info-line">{{athlete.username}}</span>
           </mat-list-item>
 
           <mat-list-item>
             <span matListItemTitle class="info-title">Email:</span>
-            <span class="info-line">{{ "habiba@gmail.com" }} </span>
+            <span class="info-line">{{ athlete.email }} </span>
           </mat-list-item>
           <mat-list-item>
             <span matListItemTitle class="info-title">Phone:</span>
-            <span class="info-line"> 01201055547</span>
+            <span class="info-line"> {{athlete.phoneNumber}}</span>
           </mat-list-item>
           <mat-list-item>
             <span matListItemTitle class="info-title">Birth Date:</span>
-            <span class="info-line">8/4/2003</span>
+            <span class="info-line">{{athlete.birthDate}}</span>
           </mat-list-item>
           <mat-list-item>
-            <span matListItemTitle class="info-title">Location:</span>
-            <span class="info-line"> Cairo, Egypt</span>
+            <span matListItemTitle class="info-title">Gender:</span>
+            <span class="info-line"> {{athlete.gender}}</span>
           </mat-list-item>
           <mat-list-item>
             <span matListItemTitle class="info-title">Address:</span>
-            <span class="info-line"> Cairo, Egypt</span>
+            <span class="info-line"> {{athlete.address}}</span>
+          </mat-list-item>
+          <mat-list-item>
+            <span matListItemTitle class="info-title">Sports:</span>
+            <span class="info-line" *ngFor="let sport of athlete.sports"> {{sport.name}}, </span>
           </mat-list-item>
         </mat-list>
+        <mat-list-item>
+            <span matListItemTitle class="info-title">Number of Followers:</span>
+            <span class="info-line"> {{athlete.numFollowers}}</span>
+          </mat-list-item>
+          <mat-list-item>
+            <span matListItemTitle class="info-title">Number of Following:</span>
+            <span class="info-line"> {{athlete.numFollowing}}</span>
+          </mat-list-item>
       </div>
     </mat-card-content>
 
     <mat-card-footer class="example-card-footer">
       <mat-card-actions align="end">
-        <button mat-raised-button>Edit Profile</button>
+        <button mat-raised-button  (click)="onEditProfile()">Edit Profile</button>
       </mat-card-actions>
     </mat-card-footer>
   </mat-card>

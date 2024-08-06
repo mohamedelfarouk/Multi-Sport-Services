@@ -12,7 +12,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { AthleteFacilitiesJoinFacilitiesComponent } from './athlete-facilities-join-facilities/athlete-facilities-join-facilities.component';
-import { AthleteFacilitiesMyFacilitiesComponent } from './athlete-facilities-my-facilities/athlete-facilities-my-facilities.component';
+import { AthleteFacilitiesMyFacilitiesComponent } from './athlete-facilities-join-facilities/athlete-facilities-my-facilities/athlete-facilities-my-facilities.component';
 
 
 @Component({

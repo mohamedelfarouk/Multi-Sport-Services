@@ -1,0 +1,65 @@
+<mat-card class="profile-card">
+    <div class="profile-picture-container">
+      <img src={{profilePicture}} alt="Profile Picture" class="profile-picture" />
+      <input type="file" (change)="onProfilePictureChange($event)" accept="image/*" />
+    </div>
+  
+    <form [formGroup]="profileForm" class="profile-form">
+      <mat-form-field appearance="fill">
+        <mat-label>First Name</mat-label>
+        <input matInput formControlName="firstName" />
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Last Name</mat-label>
+        <input matInput formControlName="lastName" />
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username" />
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" />
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Phone</mat-label>
+        <input matInput formControlName="phone" />
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Birth Date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="birthDate" />
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Gender</mat-label>
+        <mat-select formControlName="gender">
+          <mat-option value="Male">Male</mat-option>
+          <mat-option value="Female">Female</mat-option>
+          <mat-option value="Other">Other</mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Address</mat-label>
+        <textarea matInput formControlName="address"></textarea>
+      </mat-form-field>
+  <!-- <div>
+
+      <p><mat-checkbox formControlName="sports.name">Football</mat-checkbox></p>
+      <p><mat-checkbox formControlName="sports.name">Basketball</mat-checkbox></p>
+      <p><mat-checkbox formControlName="sports.name">swimming</mat-checkbox></p>
+    </div>
+   -->
+      <div class="button-group">
+          <button mat-raised-button color="warn" (click)="onCancel()">Cancel</button>
+        <button mat-raised-button color="primary" (click)="onApplyChanges()">Apply Changes</button>
+      </div>
+    </form>
+  </mat-card>
+  

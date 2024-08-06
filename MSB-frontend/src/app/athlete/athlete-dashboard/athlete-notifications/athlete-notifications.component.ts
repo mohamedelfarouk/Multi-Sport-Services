@@ -1,12 +1,15 @@
 import { Component } from '@angular/core';
-
+import { NgModule } from '@angular/core';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 @Component({
   selector: 'app-athlete-notifications',
   standalone: true,
-  imports: [],
+  imports: [
+    MatCardModule,
+    MatButtonModule,
+  ],
   templateUrl: './athlete-notifications.component.html',
-  styleUrl: './athlete-notifications.component.css'
+  styleUrl: './athlete-notifications.component.css',
 })
-export class AthleteNotificationsComponent {
-
-}
+export class AthleteNotificationsComponent {}

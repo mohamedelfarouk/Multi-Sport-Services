@@ -1,41 +1,41 @@
-<div class="content" *ngFor="let item of items">
-    <mat-card class="card" appearance="outlined">
-      <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title class="card-header">trainer {{item}} name</mat-card-title>
-      </mat-card-header>
-      <mat-card-content class="card-content">
-      </mat-card-content>
-      <mat-card-footer class="example-card-footer">
-        <mat-chip-set>
-            <mat-chip class="custom-chip">
-              <mat-icon class="sport-icon">sports_soccer </mat-icon>
-              <span class="date-text">Sport Type</span>
-            </mat-chip>
-            <mat-chip class="custom-chip">
-              <mat-icon class="date-icon">phone</mat-icon>
-              <span class="date-text">01201055547</span>
-            </mat-chip>
-            <mat-chip class="custom-chip">
-              <mat-icon class="location-icon">location_on</mat-icon>
-              <span class="date-text">Cairo, Egypt</span>
-            </mat-chip>
-            <mat-chip class="custom-chip">
-              <mat-icon class="location-icon">email</mat-icon>
-              <span class="date-text">{{email}} </span> 
-            </mat-chip>
-          </mat-chip-set>
-  
-        <mat-chip-set>
-          <mat-chip>charming</mat-chip>
-          <mat-chip>graceful</mat-chip>
-          <mat-chip>sassy</mat-chip>
+<div class="content" *ngFor="let trainer of myTrainers">
+  <mat-card class="card" appearance="outlined">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title class="card-header">{{trainer.name}} </mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="card-content">
+    </mat-card-content>
+    <mat-card-footer class="example-card-footer">
+      <mat-chip-set>
+          <mat-chip class="custom-chip">
+            <mat-icon class="sport-icon">sports_soccer </mat-icon>
+            <span class="date-text"></span>
+          </mat-chip>
+          <mat-chip class="custom-chip">
+            <mat-icon class="date-icon">phone</mat-icon>
+            <span class="date-text">{{trainer.phoneNumber}}</span>
+          </mat-chip>
+          <mat-chip class="custom-chip">
+            <mat-icon class="location-icon">location_on</mat-icon>
+            <span class="date-text">{{trainer.address}}</span>
+          </mat-chip>
+          <mat-chip class="custom-chip">
+            <mat-icon class="location-icon">email</mat-icon>
+            <span class="date-text">{{trainer.email}} </span> 
+          </mat-chip>
         </mat-chip-set>
-        <mat-card-actions align="end">
-          <button mat-raised-button>Learn More</button>
-          <!-- <button mat-raised-button>Add to Cart</button> -->
-        </mat-card-actions>
-      </mat-card-footer>
-    </mat-card>
-  </div>
-    
+
+      <mat-chip-set>
+        <mat-chip>charming</mat-chip>
+        <mat-chip>graceful</mat-chip>
+        <mat-chip>sassy</mat-chip>
+      </mat-chip-set>
+      <mat-card-actions align="end">
+        <button mat-raised-button>See Packages</button>
+        <button mat-raised-button (click)="removeTrainer(trainer)">Remove from My Trainers</button>
+      </mat-card-actions>
+    </mat-card-footer>
+  </mat-card>
+</div>
+  

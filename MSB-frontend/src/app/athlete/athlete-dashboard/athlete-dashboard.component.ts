@@ -22,7 +22,10 @@ import { AthleteTeamsComponent } from '../athlete-teams/athlete-teams.component'
 import { AthleteTrainersComponent } from '../athlete-trainers/athlete-trainers.component';
 import { MatBadgeModule } from '@angular/material/badge';
 import { AthleteCartComponent } from './athlete-cart/athlete-cart.component';
-import { AthleteProfileComponent } from "./athlete-profile/athlete-profile.component";
+import { AthleteProfileComponent } from './athlete-profile/athlete-profile.component';
+import { HttpClient } from '@angular/common/http';
+import { AthleteNotificationsComponent } from './athlete-notifications/athlete-notifications.component';
+import { AthleteEditProfileComponent } from "./athlete-edit-profile/athlete-edit-profile.component";
 
 @Component({
   selector: 'app-athlete-dashboard',
@@ -45,7 +48,9 @@ import { AthleteProfileComponent } from "./athlete-profile/athlete-profile.compo
     AthleteTeamsComponent,
     AthleteTrainersComponent,
     AthleteCartComponent,
-    AthleteProfileComponent
+    AthleteProfileComponent,
+    AthleteNotificationsComponent,
+    AthleteEditProfileComponent
 ],
   templateUrl: './athlete-dashboard.component.html',
   styleUrl: './athlete-dashboard.component.css',
@@ -56,12 +61,9 @@ export class AthleteDashboardComponent implements OnDestroy {
   fillerNav = Array.from({ length: 5 }, (_, i) => `Nav Item ${i + 1}`);
 
   fillerContent = Array.from({ length: 5 }, () => `first Content`);
- 
 
-
-
-  numberOfNotifications = 5;
-  isPressedFacilities = false;
+  numberOfNotifications = 3;
+  isPressedFacilities = true;
   isPressedTrainers = false;
   isPressedEvents = false;
   isPressedTeams = false;
@@ -102,6 +104,11 @@ export class AthleteDashboardComponent implements OnDestroy {
       (this.isPressedTeams = false),
       (this.isPressedFacilities = false);
   }
+
+  isEditProfilePressed: boolean = false;
+  toggleButtonEditProfile(): void {
+    this.isEditProfilePressed = true;
+  }
   selectedTabIndex: number = 0;
 
   onTabChange(event: any): void {
@@ -109,11 +116,14 @@ export class AthleteDashboardComponent implements OnDestroy {
   }
 
   private _mobileQueryListener: () => void;
+  // private response: any;
 
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
+    // let obs = http.get('http://localhost:8080/api/athletes/signup');
+    // obs.subscribe((response) => (this.response = response));
   }
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
