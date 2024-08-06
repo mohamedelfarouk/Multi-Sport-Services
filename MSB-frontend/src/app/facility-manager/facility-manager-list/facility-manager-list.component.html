@@ -1,0 +1,55 @@
+<form [formGroup]="facilityForm" (ngSubmit)="fetchFacility()" class="facilityForm">
+  <label for="facilityid" class="form-label">Enter Facility ID:</label>
+  <input id="facilityid" formControlName="facilityid" type="number" class="form-input" placeholder="Enter facility ID" />
+  <button type="submit" class="form-button">Fetch Facility</button>
+</form>
+
+<div *ngIf="errorMessage">
+  <p class="error-message">{{ errorMessage }}</p>
+</div>
+
+<div *ngIf="facility">
+  <h2>Facility Details</h2>
+  <table class="facility-details-table">
+    <tr>
+      <th>ID</th>
+      <td>{{ facility.facilityId }}</td>
+    </tr>
+    <tr>
+      <th>Facility Name</th>
+      <td>{{ facility.facilityName }}</td>
+    </tr>
+    <tr>
+      <th>Facility Type</th>
+      <td>{{ facility.facilityType }}</td>
+    </tr>
+    <tr>
+      <th>Address</th>
+      <td>{{ facility.address }}</td>
+    </tr>
+    <tr>
+      <th>Location</th>
+      <td>{{ facility.location }}</td>
+    </tr>
+    <tr>
+      <th>Phone Number</th>
+      <td>{{ facility.phoneNumber }}</td>
+    </tr>
+    <tr>
+      <th>Email</th>
+      <td>{{ facility.email }}</td>
+    </tr>
+    <tr>
+      <th>Ratings</th>
+      <td>{{ facility.ratings }}</td>
+    </tr>
+    <tr>
+      <th>Amenities</th>
+      <td>{{ facility.amenities }}</td>
+    </tr>
+    <tr>
+      <th>Facility Manager</th>
+      <td>{{ facility.facilityManager.firstName }} {{ facility.facilityManager.lastName }}</td>
+    </tr>
+  </table>
+</div>

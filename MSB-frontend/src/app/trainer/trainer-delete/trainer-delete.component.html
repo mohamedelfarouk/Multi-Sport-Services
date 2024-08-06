@@ -1,0 +1,8 @@
+<form id="deleteForm" class="training-form">
+    <label for="sessionId" class="form-label">Enter Session ID to Delete:</label>
+    <input id="sessionId" type="number" class="form-input" placeholder="Enter session ID" />
+    <button type="button" class="form-button" (click)="deleteSession()">Delete Session</button>
+  </form>
+  
+  <div *ngIf="message" class="message">{{ message }}</div>
+  

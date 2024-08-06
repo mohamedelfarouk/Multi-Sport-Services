@@ -1,0 +1,8 @@
+<form id="deleteForm" class="facility-form">
+    <label for="facilityId" class="form-label">Enter facility ID to Delete:</label>
+    <input id="facilityId" type="number" class="form-input" placeholder="Enter facility ID" />
+    <button type="button" class="form-button" (click)="deleteFacility()">Delete facility</button>
+  </form>
+  
+  <div *ngIf="message" class="message">{{ message }}</div>
+  
