@@ -1,0 +1,57 @@
+<form [formGroup]="sessionForm" (ngSubmit)="onSubmit()">
+  <table>
+    <tr>
+      <td><label for="facilityName">Facility Name:</label></td>
+      <td><input id="facilityName" formControlName="facilityName" type="text" required></td>
+    </tr>
+    <tr>
+      <td><label for="facilityType">Facility Type:</label></td>
+      <td>
+        <select id="facilityType" formControlName="facilityType" required>
+          <option *ngFor="let type of facilityTypes" [value]="type">{{ type }}</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td><label for="address">Address:</label></td>
+      <td><input id="address" formControlName="address" type="text" required></td>
+    </tr>
+    <tr>
+      <td><label for="location">Location:</label></td>
+      <td><input id="location" formControlName="location" type="text" required></td>
+    </tr>
+    <tr>
+      <td><label for="phoneNumber">Phone Number:</label></td>
+      <td><input id="phoneNumber" formControlName="phoneNumber" type="text" required></td>
+    </tr>
+    <tr>
+      <td><label for="email">Email:</label></td>
+      <td><input id="email" formControlName="email" type="email" required></td>
+    </tr>
+    <tr>
+      <td><label for="ratings">Ratings:</label></td>
+      <td><input id="ratings" formControlName="ratings" type="number" required></td>
+    </tr>
+    <tr>
+      <td><label for="amenities">Amenities:</label></td>
+      <td><input id="amenities" formControlName="amenities" type="text" required></td>
+    </tr>
+    <tr>
+      <td><label for="facilityManagerId">Facility Manager ID:</label></td>
+      <td><input id="facilityManagerId" formControlName="facilityManagerId" type="number" required></td>
+    </tr>
+    <tr>
+      <td><label for="facilityManagerFirstName">Facility Manager First Name:</label></td>
+      <td><input id="facilityManagerFirstName" formControlName="facilityManagerFirstName" type="text" required></td>
+    </tr>
+    <tr>
+      <td><label for="facilityManagerLastName">Facility Manager Last Name:</label></td>
+      <td><input id="facilityManagerLastName" formControlName="facilityManagerLastName" type="text" required></td>
+    </tr>
+    <tr>
+      <td colspan="2" style="text-align: center;">
+        <button type="submit">Save Facility</button>
+      </td>
+    </tr>
+  </table>
+</form>

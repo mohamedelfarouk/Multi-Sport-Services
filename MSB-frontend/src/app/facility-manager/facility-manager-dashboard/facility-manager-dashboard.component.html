@@ -1,0 +1,113 @@
+<div [ngClass]="{ 'tab-group-container': selectedTabIndex === 0 }">
+  <div class="tool-bar-row">
+    <img class="badge-image" src="badge.png" />
+    <mat-tab-group
+      (selectedTabChange)="onTabChange($event)"
+      class="tool-bar-tabs"
+      
+    >
+      <mat-tab class="tab-content">
+        <ng-template mat-tab-label>
+          <mat-icon>home</mat-icon>
+        </ng-template>
+      </mat-tab>
+      <mat-tab class="tab-content">
+        <ng-template mat-tab-label>
+          <mat-icon>shopping_cart</mat-icon>
+        </ng-template>
+      </mat-tab>
+      <mat-tab class="tab-content">
+        <ng-template mat-tab-label>
+          <mat-icon matBadge="{{ numberOfNotifications }}"
+            >notifications</mat-icon
+          >
+        </ng-template>
+      </mat-tab>
+      <mat-tab class="tab-content">
+        <ng-template mat-tab-label>
+          <mat-icon>account_circle</mat-icon>
+        </ng-template>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>
+
+<div *ngIf="selectedTabIndex === 0">
+  <div
+    class="example-container"
+    [class.example-is-mobile]="mobileQuery.matches"
+  >
+    <mat-toolbar class="example-toolbar">
+      <button mat-icon-button (click)="snav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </mat-toolbar>
+
+    <mat-sidenav-container
+      class="example-sidenav-container"
+      [style.marginTop.px]="mobileQuery.matches ? 56 : 0"
+    >
+      <mat-sidenav
+        #snav
+        [mode]="mobileQuery.matches ? 'over' : 'side'"
+        [fixedInViewport]="mobileQuery.matches"
+        fixedTopGap="56"
+        class="side-nav"
+      >
+        <mat-nav-list class="button-row">
+          <div class="button-row">
+            <p>
+              <button
+                class="sidenav-buttons"
+                mat-fab
+                extended
+                [ngClass]="{ 'shaded-button-createUpdate':  isPressedCreateUpdate}"
+                (click)="toggleButtonCreateUpdate()"
+              >
+               create
+              </button>
+            </p>
+            <p>
+              <button
+                class="sidenav-buttons"
+                mat-fab
+                extended
+                [ngClass]="{ 'shaded-button-trainers': isPressedList }"
+                (click)="toggleButtonList()"
+              >
+                List
+              </button>
+            </p>
+            <p>
+              <button
+                class="sidenav-buttons"
+                mat-fab
+                extended
+                [ngClass]="{ 'shaded-button-events': isPressedDelete }"
+                (click)="toggleButtonDelete()"
+              >
+                Delete
+              </button>
+             </div>
+        </mat-nav-list>
+      </mat-sidenav>
+    </mat-sidenav-container>
+  </div>
+</div>
+<div class="tab-content-container">
+  <ng-container *ngIf="selectedTabIndex === 0">
+    <div *ngIf="isPressedCreateUpdate" class="home">
+        <app-facility-manager-create></app-facility-manager-create>
+    </div>
+    <div *ngIf="isPressedList" class="home">
+    <app-facility-manager-list></app-facility-manager-list>
+    </div>
+    <div *ngIf="isPressedDelete" class="home">
+      <app-facility-manager-delete></app-facility-manager-delete>   
+
+       
+    </div>
+     
+  </ng-container>
+   <ng-container *ngIf="selectedTabIndex === 2"> notifications </ng-container>
+   </div>
