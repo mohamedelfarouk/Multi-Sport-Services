@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
@@ -17,6 +17,7 @@ import {
 import { Event } from './Event';
 import { Trainer } from './Trainer';
 import { Facility } from './Facility';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-athlete-cart',
   standalone: true,
@@ -33,29 +34,44 @@ import { Facility } from './Facility';
   styleUrl: './athlete-cart.component.css',
 })
 export class AthleteCartComponent {
-  cartItems = [
-    new Event('event name', '12/11/2024 : 13/11/2024', 1000),
-    new Event('event name', '11/11/2024 : 13/11/2024', 2000),
-    new Trainer('trainer name', '11/7/2024 : 13/8/2024', 500),
-    new Facility('facility name', 2000),
-  ];
-  totalCost(){
-   let sum=0;
-   this.cartItems.forEach(element => {
-    sum+=element.price;
-   });
-return sum;
+  @Input() athleteData:any;
+
+  cartItems: any[] = []; // Will be fetched from backend
+
+  private http = inject(HttpClient); // Inject HttpClient
+
+  constructor() {
+    this.loadCartData();
   }
+
+  // Fetch cart data from the backend
+  loadCartData(): void {
+    const athleteId = this.athleteData?.id; // Assume athleteData has the athlete's ID
+    if (athleteId) {
+      this.http
+        .get<any[]>(`/api/athletes/${athleteId}/cart`) // Backend endpoint for fetching cart items
+        .subscribe((response) => {
+          this.cartItems = response;
+        });
+    }
+  }
+
+  totalCost(): number {
+    return this.cartItems.reduce((sum, item) => sum + item.price, 0);
+  }
+
   isEvent(item: any): item is Event {
-    return item instanceof Event;
+    return item.type === 'event'; // Assuming backend data has a 'type' field
   }
 
   isTrainer(item: any): item is Trainer {
-    return item instanceof Trainer;
+    return item.type === 'trainer';
   }
+
   isFacility(item: any): item is Facility {
-    return item instanceof Facility;
+    return item.type === 'facility';
   }
+
   readonly dialog = inject(MatDialog);
 
   openDialog(): void {
@@ -63,18 +79,25 @@ return sum;
       width: '250px',
     });
   }
+
+  // Remove item from the cart
+  removeItem(item: any): void {
+    const athleteId = this.athleteData?.id;
+    if (athleteId && item.id) {
+      this.http
+        .delete(`/api/athletes/${athleteId}/cart/${item.id}`) // Backend endpoint for removing item
+        .subscribe(() => {
+          this.cartItems = this.cartItems.filter((i) => i.id !== item.id); // Remove from local cartItems array
+        });
+    }
+  }
 }
+
 @Component({
   selector: 'dialog-animations-example-dialog',
   templateUrl: 'dialog.html',
   standalone: true,
-  imports: [
-    MatButtonModule,
-    MatDialogActions,
-    MatDialogClose,
-    MatDialogTitle,
-    MatDialogContent,
-  ],
+  imports: [MatButtonModule, MatDialogActions, MatDialogClose, MatDialogTitle, MatDialogContent],
 })
 export class DialogAnimationsExampleDialog {
   readonly dialogRef = inject(MatDialogRef<DialogAnimationsExampleDialog>);

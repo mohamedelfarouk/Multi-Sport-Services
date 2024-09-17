@@ -1,6 +1,6 @@
 <div class="tab-group-container">
     <mat-tab-group (selectedTabChange)="onTabChange($event)">
-      <mat-tab label="My Trainers" class="tab-content"> <app-athlete-trainers-my-trainers></app-athlete-trainers-my-trainers> </mat-tab>
-      <mat-tab label="Book Trainers" class="tab-content"> <app-athlete-trainers-book-trainers></app-athlete-trainers-book-trainers> </mat-tab>
+      <mat-tab label="My Trainers" class="tab-content"> <app-athlete-trainers-my-trainers [userData]="athleteData"></app-athlete-trainers-my-trainers> </mat-tab>
+      <mat-tab label="Book Trainers" class="tab-content"> <app-athlete-trainers-book-trainers [userData]="athleteData"></app-athlete-trainers-book-trainers> </mat-tab>
     </mat-tab-group>
   </div>

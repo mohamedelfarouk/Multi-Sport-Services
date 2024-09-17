@@ -1,0 +1,52 @@
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: 100vh; */
+    background-color: #e0a83f;
+  }
+  
+  .login-card {
+    padding: 20px;
+    /* width: 50%;
+    height:60%; */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    background-color: #ffe398;
+  }
+  
+  .login-logo {
+    width: 130vh;
+    height: 40vh;
+    margin-bottom: 20px;
+    border-radius: 15px; /* Adjust as needed for rounded corners */
+
+  }
+  .names mat-form-field + mat-form-field {
+    margin-left: 18px;
+    padding: 10px;
+  }
+  .full-width {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+  
+  .login-actions {
+    display: flex;
+    justify-content: center;
+  }
+  
+  button {
+    width: 100%;
+    padding: 22px;
+  }
+  
+  .error mat-form-field {
+    color: red;
+    border-bottom: 2px solid red;
+  }
+  
+  mat-error {
+    font-size: 12px;
+    color: red;
+  }
+  

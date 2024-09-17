@@ -1,7 +1,7 @@
 <div class="content" *ngFor="let item of cartItems; let i = index">
   <mat-card class="card" appearance="outlined">
     <mat-card-header>
-      <mat-card-title class="card-header">{{i+1}}-{{ item.name }}</mat-card-title>
+      <mat-card-title class="card-header">{{ i + 1 }}-{{ item.name }}</mat-card-title>
     </mat-card-header>
 
     <mat-card-footer class="example-card-footer">
@@ -10,28 +10,22 @@
           <mat-chip class="custom-chip"><span class="type-chip"> Event Ticket </span></mat-chip>
         </div>
         <div *ngIf="isTrainer(item)">
-            <mat-chip class="custom-chip"><span class="type-chip"> Trainer Package </span></mat-chip>
-          </div>
-          <div *ngIf="isFacility(item)">
-            <mat-chip class="custom-chip"><span class="type-chip">Facility Package </span></mat-chip>
-          </div>
-          <div *ngIf="isEvent(item)">
-            <mat-chip class="date-text"> {{item.date}} </mat-chip>
-          </div>
-          <div *ngIf="isTrainer(item)">
-            <mat-chip class="date-text"> {{item.date}} </mat-chip>
-          </div>
+          <mat-chip class="custom-chip"><span class="type-chip"> Trainer Package </span></mat-chip>
+        </div>
+        <div *ngIf="isFacility(item)">
+          <mat-chip class="custom-chip"><span class="type-chip"> Facility Package </span></mat-chip>
+        </div>
+        <div *ngIf="item.date">
+          <mat-chip class="date-text"> {{ item.date }} </mat-chip>
+        </div>
       </mat-chip-set>
 
       <mat-chip-set>
-        <mat-chip ><span class="money-text">{{item.price}}</span> egp</mat-chip>
-
+        <mat-chip><span class="money-text">{{ item.price }}</span> egp</mat-chip>
       </mat-chip-set>
       <mat-card-actions align="end">
-        <button mat-raised-button >
-            Details
-          </button>
-        <button mat-raised-button color="warn" (click)="openDialog()">
+        <button mat-raised-button>Details</button>
+        <button mat-raised-button color="warn" (click)="removeItem(item)">
           Remove Item
         </button>
       </mat-card-actions>
@@ -39,9 +33,7 @@
   </mat-card>
 </div>
 <div class="checkout-footer">
-    <mat-chip class="cost-chip"><span class="cost-text">Total Cost is : </span><span class ='cost-checkout'>{{totalCost()}} egp</span> </mat-chip>
+  <mat-chip class="cost-chip"><span class="cost-text">Total Cost is :</span><span class="cost-checkout">{{ totalCost() }} egp</span></mat-chip>
 
-    <button mat-fab extended class="custom-green-fab">
-        Proceed to Checkout
-    </button>
+  <button mat-fab extended class="custom-green-fab">Proceed to Checkout</button>
 </div>

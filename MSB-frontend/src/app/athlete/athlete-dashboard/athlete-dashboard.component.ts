@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, input } from '@angular/core';
 import { MatTabChangeEvent, MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
 import {
@@ -56,6 +56,8 @@ import { AthleteEditProfileComponent } from "./athlete-edit-profile/athlete-edit
   styleUrl: './athlete-dashboard.component.css',
 })
 export class AthleteDashboardComponent implements OnDestroy {
+  @Input() userData:any;
+
   mobileQuery: MediaQueryList;
 
   fillerNav = Array.from({ length: 5 }, (_, i) => `Nav Item ${i + 1}`);

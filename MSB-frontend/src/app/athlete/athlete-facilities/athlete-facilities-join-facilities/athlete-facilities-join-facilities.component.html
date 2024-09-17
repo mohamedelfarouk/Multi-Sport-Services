@@ -1,60 +1,70 @@
 <div>
-
   <form class="example-form">
     <mat-form-field class="example-full-width" appearance="outline">
-    <mat-label>Search</mat-label>
-    <mat-icon matPrefix>search</mat-icon>
-    <input type="search" matInput >
+      <mat-icon matSuffix>search</mat-icon>
+      <mat-label>Search with name </mat-label>
+      <input type="search" matInput [(ngModel)]="searchQuery" name="searchQuery">
+    </mat-form-field>
+    <button
+      mat-fab
+      extended
+      color="primary"
+      (click)="searchFacilities()"
+      class="search-button"
+    >
+      Search
+    </button>
+  </form>
 
-  </mat-form-field>
-</form>
-
-<div *ngFor="let facility of facilities">
-
-  <mat-card class="card" appearance="outlined">
-    <mat-card-header>
-      <mat-card-title class="card-header"
-        >{{facility.facilityName}}</mat-card-title
-      >
+  <div *ngFor="let facility of facilities">
+    <mat-card class="card" appearance="outlined">
+      <mat-card-header>
+        <mat-card-title class="card-header">{{
+          facility.facilityName
+        }}</mat-card-title>
         <img
           mat-card-sm-image
           src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAA4VBMVEX///9VuUnC1zBItTzN6Mz//v9Ot0EAAABWuEn///294L2FyH7w8PBFsTnn9eWc0ZW34LHA1iHy+vH29vaNzYddvFbh6Z+pqal0wm3J2C9OuUqSz43a7tnU1NTAwMBGtjra7to0NDRRUVHc6ZdhvF1AQEDh4eF9xUEhISFfX1+jo6PExMQvLy9+fn4eHh6SkpKysrLG5MVGRkYUFBRycnKYmJjq8cJwwWVdXV1ubm7h7LK51gDU5IL6/O3E20vJ21Tw9dHJ3GKm1qb4++V6xD3M2147syXn+OZit1SAyXqOyZAt+oDbAAAI6ElEQVR4nO2bDXuixhaAhyAIxmAEjV4VUavUb40mNdnbbXvT22x2//8P6jkzIKBGNOJjQ8+7u34MMDMvZ75AljGCIAiCIAiCIAiCIAiCIAiCIAiCIAiCIAiCIAiCIAiCIAiCIAiCIIhPha7rl67CmQHBlCvqX+5Yyh3v/vvr10vX4bzcFYu//ZLq7nhXvCpe/WSmuKWC4dVV8fc/0tsbuSE4/vSVD6wpxDO8Kv71R8oNoTfepXNuXBuC4//+TKNiyPCqWPwlhYphQxhvmK5cukZJs2V46QolzqZh+iDDz8+GYerGmX+h4aWrcwZSb5j7+T+pNjSu5RQbwpiSK6u1FBsy81qWpIghrrxTxL2qSlHD4u+puXpSMICOJkUMi8Vfv6bED8mVZS4YGIp7iiwlM75ZklVJihhCABVd1810RBGGUEmKGBZ/+4IBNKovl67byegYwMDPM/Ru0NxqzsunH2oUltPCgsLwi84DKEvqy+e/i5FzpAi1/xf/+hM3vKC4Wrh0/U7nVo4aqj/fYWRbXW6eQkN51YKep996Y2v6DLUXvM1tVP2mmzpDEMIAauGET8+tumH49dpRU20YHVzV+qXrdzrbhvLxhv/oVcFWK83J2tGGZyOJ1caOGIYNS7Cqy8RjMtYKf9msqCG2WH6CCZ8OyJZn1dq/S+t0w1tHjsF5zTFWd7z9nO63jTJ09vKKW14N73tGMplZjsvXcVa4bJb27sf3OdEwt7Hq2YEDhoV1RuqbsVUKz+PG4F3WuHYkg5ld7f0MBTcZaKV1Vdu7YzWuJSdiKEcMpe0oBobMfIGlfg0My3GG6jUs+xtyzG4XMYQoRhT1kGFmhR8PMrxpwaFVNWaveMONNU0ihpJaDjfUkKG+4tmDoR5nCOO4ckDhpxrW14aq6Pzi1cPv7q++oVZTxdGRKIZjuOIngsdQldQQfolrNENh5humaZr6XiRVNTFD9TY8RDcE/td70zfsvnhLovBwEzasSp6hXihF8Eot1f2EHBxXELXrVlfVXayAUuxYeqCh09g5/SqK4q1oRCvtMv+eSCSKIUM/hhuYYsTsRiZTvSuyau0zSNCQ+Y+B6T7hInxD/buXY7gvxhsaNXHMTsNMqMjoeT7gqa2YsTQwbMVkxA3VLlPMqrzVFw81lDYNNa+Vrtvl8Tf/DjZseIVG47fDkBmrrYZ6omGAfPzl3HGtdA+BITO6fkMVinpyhh+4YD3S0Mzde5hKNIwhQ1CMRPEEww3B8xvqSv3VW/FWjWifDxkquKwOKe6cDw8zPH8MCxsxhCmK3+TQJDm6MovEkOlmEEXjMENpj6GGsz7n/IYg4M3CmqpltgxrXX80N/2+KOHUf5qhpgYXS8dfkh9ryLy74ZywYtQwGFE1jOIB/XCPofyyXj1ltg48h+FaUZNCicKwHMzIwXBTNoKV90cMnczm3kcZ7p8P14ZyQw+o+3UPNdQtw9C8WBYHfHS2kHOtRgP+NlpIg/9p+d+275l80FDtrgL8QVyT1HUUtw3Zt3UUxduHx1L1XeSbzYvtDxu+g6rdRwy7kXXjuqGeaPg+ciH2178TDSGMGSG1y5B9i/w4Gbl6OshwFSMoSbGN9GRDcYHPNubDoOLh20jHG8bEUJMPWIifbijV7vECarcha2i1iOGRrXR/yWo3PoQHXFvcOu93dA9+1w93k8tb18mNoKFyQ5kfsW0oBo5y5OEPvbu/XCd3wF3xW2crZEGChkuIVr1eL5Wuke+hV0Tcbrj+/gMfa+DJP7aLzGiStjbUC+LIrXNvihLqUcMf13v5ccAPJnrrzXnfUK62DvvlILj03tpfwShq6xi+n8NHOKB2OjMLN/JuQ1UtmJgH3joQ62nv0nd9+btOYHsf2YC+qMUZ+hlGBRJ5DkRnja6zy9B5yyTzzBdEUeaK8YZnAX/8KDiir4QMoQuayT3U1pIx/wsZcjJlVY0YqrWTVrtbtLAvXtKQmXUZquD/yq2qpaT/IzDOixc1xMf3HM0zlN9yyf/30cyFY4jPsZVkmRvWSkbyv8zrLHPpGAL3b7iE0XJnyj5zeUNmZHTFOF817i9uCLM2zg/ne3bkH/1UCvGpsfKABauvvPeBv+O9bW+L5ScEH8RqKC9eleCzpezIjydZ8C/IAJL4BgVexVM4+B2P9vLx65VPwnAx7vUWWZuNsu12ezxhbrbX67U7jM2zi8WiV3GXkN7uDxh7xC3ZCWPDHh5oZ7EiLiYw9sBfOzZTFtN+v790YTPmN8Pk4bi3HPfG+QomZQd8T36wjcX0UGMyZOy5yVjvEU/XOM/y2THkk50lYNizsYBHNurgN4W5Y3zLuqzywLfbXMddWmyGxTVhtwoWbPV4JQeVqYsZ9J8VbpjPQryUTpPZ7XUREKqnCrxXBvzEYC7Pk0ffcDmGDCawfQCGi/5EGMJuEFd7mIThyLKsBzBsz+cjdBljS0XDgetaa8MpGGKchlCp4RBOy6QC9cCtQ6z3Q3PWsYQhjyxUbjmvNNelDOa+YTPLTyvfjxs+NCHivmHP7TwwSxgy17aTaKad6Xg8xlban82wGm62Pe23nxRope1+M2wIrXQ5nsK5H1bccXPB+lD801zBswGGbNYODLH2y8dZJTDkMeQZwHmad+CkTjzDZ5B2A0P29JxvC8PHSec5AUMIBz6QwEZeZm5PsRYYrV2t1M5iWIYVNgStKdZjPO1nn7ghe+wvfMOnpndc1HAA5w8/jJfTZT+b9w3ZaNkLDNnDwjOEDYMEDNu2eB9Nh8PhI9QM+2F7oLCKULazE+BhrPB+aGMNh0OmQIOGKi6wXTNoAThKQIxsZmUns9ksO4KRS+Qn6KDY8AmbyEy0azZ5ZvYCDEXn9AzHvFNDzi4vNpEYNr2mnp8jI5bHSlkVG3oBT1eaFQS+2JjgDi3munzL3LLm4iSAD0+y4XWEe88VkV9l5JXCt7v4LT/MiyKtCsuPvEReGO4jNo3gVRTrJmBIEARBEARBEARBEARBEARBEARBEARBEARBEARBEARBEARBEARBEARBEARBEARBEARBEOfnb3Ol8DZ2veD/AAAAAElFTkSuQmCC"
-          alt="Image" class="right-image"
-          />
-          <mat-card-subtitle>Facility description
-          </mat-card-subtitle>
-    </mat-card-header>
-    
-    <mat-card-footer class="example-card-footer">
-      <mat-chip-set>
-        <mat-chip class="custom-chip">
-          <mat-icon class="sport-icon">location_city </mat-icon>
-          <span class="date-text">{{facility.facilityType}}</span>
-        </mat-chip>
-        <mat-chip class="custom-chip">
-          <mat-icon class="date-icon">phone</mat-icon>
-          <span class="date-text">{{facility.phoneNumber}}</span>
-        </mat-chip>
-        <mat-chip class="custom-chip">
-          <mat-icon class="location-icon">location_on</mat-icon>
-          <span class="date-text">{{facility.address}}</span>
-        </mat-chip>
-        <mat-chip class="custom-chip">
-          <mat-icon class="location-icon">email</mat-icon>
-          <span class="date-text">{{facility.email}} </span> 
-        </mat-chip>
-      </mat-chip-set>
+          alt="Image"
+          class="right-image"
+        />
+        <mat-card-subtitle>Facility description </mat-card-subtitle>
+      </mat-card-header>
 
-      <mat-chip-set>
-        <mat-chip>charming</mat-chip>
-        <mat-chip>graceful</mat-chip>
-        <mat-chip>sassy</mat-chip>
-      </mat-chip-set>
-      <mat-card-actions align="end">
-        <button mat-raised-button (click)="addFacilityToMyFacilities(facility)">Add to My Facilities</button>
-      </mat-card-actions>
-    </mat-card-footer>
-  </mat-card>
-</div>
+      <mat-card-footer class="example-card-footer">
+        <mat-chip-set>
+          <mat-chip class="custom-chip">
+            <mat-icon class="sport-icon">location_city </mat-icon>
+            <span class="date-text">{{ facility.facilityType }}</span>
+          </mat-chip>
+          <mat-chip class="custom-chip">
+            <mat-icon class="date-icon">phone</mat-icon>
+            <span class="date-text">{{ facility.phoneNumber }}</span>
+          </mat-chip>
+          <mat-chip class="custom-chip">
+            <mat-icon class="location-icon">location_on</mat-icon>
+            <span class="date-text">{{ facility.address }}</span>
+          </mat-chip>
+          <mat-chip class="custom-chip">
+            <mat-icon class="location-icon">email</mat-icon>
+            <span class="date-text">{{ facility.email }} </span>
+          </mat-chip>
+        </mat-chip-set>
 
+        <mat-chip-set>
+          <mat-chip>charming</mat-chip>
+          <mat-chip>graceful</mat-chip>
+          <mat-chip>sassy</mat-chip>
+        </mat-chip-set>
+        <mat-card-actions align="end">
+          <button
+            mat-raised-button
+            (click)="addFacilityToMyFacilities(facility)"
+          >
+            Add to My Facilities
+          </button>
+        </mat-card-actions>
+      </mat-card-footer>
+    </mat-card>
   </div>
+</div>

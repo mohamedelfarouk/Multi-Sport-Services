@@ -123,26 +123,26 @@
 <div class="tab-content-container">
   <ng-container *ngIf="selectedTabIndex === 0">
     <div *ngIf="isPressedFacilities" class="home">
-      <app-athlete-facilities></app-athlete-facilities>
+      <app-athlete-facilities [athleteData]="userData"></app-athlete-facilities>
     </div>
     <div *ngIf="isPressedBookings" class="home">
-      <app-athlete-bookings></app-athlete-bookings>
+      <app-athlete-bookings [athleteData]="userData"></app-athlete-bookings>
     </div>
     <div *ngIf="isPressedEvents" class="home">
-      <app-athlete-events></app-athlete-events>
+      <app-athlete-events [athleteData]="userData"></app-athlete-events>
     </div>
     <div *ngIf="isPressedTeams" class="home">
-      <app-athlete-teams></app-athlete-teams>
+      <app-athlete-teams [athleteData]="userData"></app-athlete-teams>
     </div>
     <div *ngIf="isPressedTrainers" class="home">
-      <app-athlete-trainers></app-athlete-trainers>
+      <app-athlete-trainers [athleteData]="userData"></app-athlete-trainers>
     </div>
   </ng-container>
-  <ng-container *ngIf="selectedTabIndex === 1"> <app-athlete-cart></app-athlete-cart> </ng-container>
-  <ng-container *ngIf="selectedTabIndex === 2"> <app-athlete-notifications></app-athlete-notifications> </ng-container>
+  <ng-container *ngIf="selectedTabIndex === 1"> <app-athlete-cart [athleteData]="userData"></app-athlete-cart> </ng-container>
+  <ng-container *ngIf="selectedTabIndex === 2"> <app-athlete-notifications [athleteData]="userData"></app-athlete-notifications> </ng-container>
   <ng-container *ngIf="selectedTabIndex === 3"> 
     <ng-container *ngIf="isEditProfilePressed">
-      <app-athlete-edit-profile></app-athlete-edit-profile>
+      <app-athlete-edit-profile [athleteData]="userData"></app-athlete-edit-profile>
     </ng-container>
-    <app-athlete-profile></app-athlete-profile> </ng-container>
+    <app-athlete-profile [athleteData]="userData"></app-athlete-profile> </ng-container>
 </div>

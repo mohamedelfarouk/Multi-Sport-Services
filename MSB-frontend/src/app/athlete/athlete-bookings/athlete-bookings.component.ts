@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
@@ -34,6 +34,8 @@ import { Booking } from './Booking';
   styleUrl: './athlete-bookings.component.css'
 })
 export class AthleteBookingsComponent {
+  @Input() athleteData:any;
+
   bookings = [
 new Booking("event name","Event","12/12/2023","Paid",1000,"15/12/2023","16/12/2023"),
 new Booking("facility name" ,"Facility package","12/12/2023","Paid",4000,"15/12/2023","16/12/2023"),

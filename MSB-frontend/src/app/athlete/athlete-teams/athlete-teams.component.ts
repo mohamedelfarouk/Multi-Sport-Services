@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import {MatTabChangeEvent, MatTabsModule} from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenav, MatSidenavContainer, MatSidenavContent } from '@angular/material/sidenav';
@@ -25,6 +25,7 @@ import { AthleteTeamsCreateTeamComponent } from "./athlete-teams-create-team/ath
 })
 export class AthleteTeamsComponent {
   selectedTabIndex: number = 0;
+  @Input() athleteData:any;
 
   onTabChange(event: MatTabChangeEvent): void {
     this.selectedTabIndex = event.index;

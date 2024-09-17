@@ -1,87 +1,81 @@
-import { Component } from '@angular/core';
-import {MatTabChangeEvent, MatTabsModule} from '@angular/material/tabs';
+import { Component, Input, OnInit } from '@angular/core';
+import { MatTabChangeEvent, MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
-import { MatSidenav, MatSidenavContainer, MatSidenavContent } from '@angular/material/sidenav';
+import {
+  MatSidenav,
+  MatSidenavContainer,
+  MatSidenavContent,
+} from '@angular/material/sidenav';
 import { MatList, MatNavList } from '@angular/material/list';
 import { CommonModule } from '@angular/common';
 import { MdbTabsModule } from 'mdb-angular-ui-kit/tabs';
-import {MediaMatcher} from '@angular/cdk/layout';
-import {ChangeDetectorRef,OnDestroy} from '@angular/core';
-import {MatListModule} from '@angular/material/list';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatButtonModule} from '@angular/material/button';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import { EventManagerCreateEventComponent } from "../event-manager-create-event/event-manager-create-event.component";
+import { MediaMatcher } from '@angular/cdk/layout';
+import { ChangeDetectorRef, OnDestroy } from '@angular/core';
+import { MatListModule } from '@angular/material/list';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { EventManagerCreateEventComponent } from '../event-manager-create-event/event-manager-create-event.component';
+import { EventManagerNotificationsComponent } from './event-manager-notifications/event-manager-notifications.component';
+import { EventManagerProfileComponent } from './event-manager-profile/event-manager-profile.component';
+import { HttpClient } from '@angular/common/http';
+import { EventManagerComponent } from '../event-manager.component';
 
 @Component({
   selector: 'app-event-manager-dashboard',
   standalone: true,
-  imports: [MatTabsModule, MatIconModule, MatSidenav, MatSidenavContent, MatSidenavContainer, MatNavList, CommonModule, MdbTabsModule, MatToolbarModule, MatButtonModule, EventManagerCreateEventComponent],
+  imports: [
+    MatTabsModule,
+    MatIconModule,
+    MatSidenav,
+    MatSidenavContent,
+    MatSidenavContainer,
+    MatNavList,
+    CommonModule,
+    MdbTabsModule,
+    MatToolbarModule,
+    MatButtonModule,
+    EventManagerCreateEventComponent,
+    EventManagerNotificationsComponent,
+    EventManagerProfileComponent,
+    EventManagerComponent
+  ],
   templateUrl: './event-manager-dashboard.component.html',
-  styleUrl: './event-manager-dashboard.component.css'
+  styleUrl: './event-manager-dashboard.component.css',
 })
-export class EventManagerDashboardComponent implements OnDestroy{
-  mobileQuery: MediaQueryList;
+export class EventManagerDashboardComponent implements OnInit {
+  @Input() userData: any ;
 
-  fillerNav = Array.from({length: 5}, (_, i) => `Nav Item ${i + 1}`);
+  numberOfNotifications = 3;
 
-  fillerContent = Array.from(
-    {length: 5},
-    () =>
-      `first Content`,
-  );
-  // isPressedFacilities = false;
-  // isPressedTrainers=false;
-  isPressedEvents=false;
-  // isPressedTeams=false;
-  // isPressedBookings=false;
-  isPressedCreateEvent=false;
+  fillerNav = Array.from({ length: 5 }, (_, i) => `Nav Item ${i + 1}`);
 
-  // toggleButtonFacilities(): void {
-  //   this.isPressedFacilities = true;
-  //   this.isPressedTrainers=false,this.isPressedEvents=false,this.isPressedTeams=false,this.isPressedBookings=false;
-  // }
-  // toggleButtonTrainers(): void {
-  //   this.isPressedTrainers=true ;
-  //   this.isPressedFacilities=false,this.isPressedEvents=false,this.isPressedTeams=false,this.isPressedBookings=false;
+  fillerContent = Array.from({ length: 5 }, () => `first Content`);
 
-  // }
+  isPressedEvents = false;
+
+  isPressedCreateEvent = false;
+
   toggleButtonEvents(): void {
     this.isPressedEvents = true;
-    this.isPressedCreateEvent=false;
-
+    this.isPressedCreateEvent = false;
   }
 
   toggleButtonCreateEvent(): void {
     this.isPressedCreateEvent = true;
-    this.isPressedEvents=false;
-
+    this.isPressedEvents = false;
   }
 
-  // toggleButtonTeams(): void {
-  //   this.isPressedTeams = true;
-  //   this.isPressedTrainers=false,this.isPressedEvents=false,this.isPressedFacilities=false,this.isPressedBookings=false;
-
-  // }
-  // toggleButtonBookings(): void {
-  //   this.isPressedBookings = true;
-  //   this.isPressedTrainers=false,this.isPressedEvents=false,this.isPressedTeams=false,this.isPressedFacilities=false;
-
-  // }
   selectedTabIndex: number = 0;
 
   onTabChange(event: MatTabChangeEvent): void {
     this.selectedTabIndex = event.index;
   }
 
-  private _mobileQueryListener: () => void;
-
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
-    this.mobileQuery = media.matchMedia('(max-width: 600px)');
-    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-    this.mobileQuery.addListener(this._mobileQueryListener);
+  constructor(private http: HttpClient) {
+    console.log('user dataaaaaaaaa: ', this.userData);
   }
-  ngOnDestroy(): void {
-    this.mobileQuery.removeListener(this._mobileQueryListener);
+  ngOnInit(): void {
+    console.log('user dataaaaaaaaa22222: ', this.userData);
   }
 }

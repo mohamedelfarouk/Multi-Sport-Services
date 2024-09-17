@@ -59,6 +59,22 @@
     margin-right: 8px;
     font-size: 26px; /* Adjust size as needed */
   }
+  .example-form {
+
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 90%;
+  }
+  .search-button{
+    padding: 26px;
+    margin-left:16px;
+    color: #006600;
+  }
+  mat-form-field {
+    position: relative;
+  }
   
   
   

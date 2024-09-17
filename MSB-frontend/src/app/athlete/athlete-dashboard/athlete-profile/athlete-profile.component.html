@@ -1,3 +1,4 @@
+<ng-container *ngIf="!isEditProfilePressed">
 <div class="content">
   <mat-card class="card" appearance="outlined">
     <mat-card-header class="card-header-container">
@@ -5,7 +6,6 @@
       <img
         mat-card-sm-image
         src="https://media.istockphoto.com/id/519998671/photo/serious-about-his-fitness.jpg?s=612x612&w=0&k=20&c=oO7B4UtkN-vSxrXTBMtChwc16g8ILoHQU0rh-EZElLY="
-        alt="Round Image"
         class="right-image"
       />
     </mat-card-header>
@@ -60,3 +60,8 @@
     </mat-card-footer>
   </mat-card>
 </div>
+</ng-container>
+<ng-container *ngIf="isEditProfilePressed">
+  <app-athlete-edit-profile [athleteData]="athleteData"></app-athlete-edit-profile>
+</ng-container>
+

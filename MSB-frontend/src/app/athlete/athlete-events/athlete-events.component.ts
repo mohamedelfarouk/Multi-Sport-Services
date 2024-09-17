@@ -1,14 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import {MatTabChangeEvent, MatTabsModule} from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenav, MatSidenavContainer, MatSidenavContent } from '@angular/material/sidenav';
 import { MatList, MatNavList } from '@angular/material/list';
 import { CommonModule } from '@angular/common';
 import { MdbTabsModule } from 'mdb-angular-ui-kit/tabs';
-import {MediaMatcher} from '@angular/cdk/layout';
-import {ChangeDetectorRef,OnDestroy} from '@angular/core';
-import {MatListModule} from '@angular/material/list';
-import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { AthleteEventsMyEventsComponent } from "./athlete-events-my-events/athlete-events-my-events.component";
@@ -24,6 +20,7 @@ import { AthleteEventsJoinEventsComponent } from "./athlete-events-join-events/a
 })
 export class AthleteEventsComponent {
   selectedTabIndex: number = 0;
+  @Input() athleteData:any;
 
   onTabChange(event: MatTabChangeEvent): void {
     this.selectedTabIndex = event.index;

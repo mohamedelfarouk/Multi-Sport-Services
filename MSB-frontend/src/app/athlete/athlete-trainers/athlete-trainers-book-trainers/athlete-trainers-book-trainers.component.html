@@ -1,3 +1,21 @@
+<div>
+  <form class="example-form">
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-icon matSuffix>search</mat-icon>
+      <mat-label>Search with name</mat-label>
+      <input type="search" matInput [(ngModel)]="searchQuery" name="searchQuery">
+    </mat-form-field>
+    <button
+      mat-fab
+      extended
+      color="primary"
+      (click)="searchTrainers()"
+      class="search-button"
+    >
+      Search
+    </button>
+  </form>
+
 <div class="content" *ngFor="let trainer of trainers">
     <mat-card class="card" appearance="outlined">
       <mat-card-header>
@@ -38,4 +56,4 @@
       </mat-card-footer>
     </mat-card>
   </div>
-    
+</div>

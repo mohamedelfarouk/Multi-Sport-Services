@@ -18,11 +18,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { ProfileData } from './ProfileData';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @Component({
-  selector: 'app-athlete-edit-profile',
+  selector: 'app-event-manager-edit-profile',
   standalone: true,
   imports: [
     ReactiveFormsModule,
@@ -37,11 +36,11 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     HttpClientModule,
     MatCheckboxModule
   ],
-  templateUrl: './athlete-edit-profile.component.html',
-  styleUrl: './athlete-edit-profile.component.css',
+  templateUrl: './event-manager-edit-profile.component.html',
+  styleUrl: './event-manager-edit-profile.component.css',
 })
-export class AthleteEditProfileComponent implements OnInit {
-  @Input() athleteData:any;
+export class EventManagerEditProfileComponent implements OnInit {
+  @Input() eventManagerData:any;
 
   profileForm: FormGroup;
   sportsList= ['Football','Basketball'];
@@ -70,20 +69,20 @@ export class AthleteEditProfileComponent implements OnInit {
   }
 
   loadProfileData(): void {
-console.log("athlete DATA IS ",this.athleteData);
+console.log("athlete DATA IS ",this.eventManagerData);
         this.profileForm.patchValue({
-          userId: this.athleteData.userId,
-          firstName: this.athleteData.firstName,
-          lastName: this.athleteData.lastName,
-          username: this.athleteData.username,
-          email: this.athleteData.email,
-          phoneNumber: this.athleteData.phoneNumber || '', // Default to empty string if null
-          birthDate: this.athleteData.birthDate
-            ? new Date(this.athleteData.birthDate)
+          userId: this.eventManagerData.userId,
+          firstName: this.eventManagerData.firstName,
+          lastName: this.eventManagerData.lastName,
+          username: this.eventManagerData.username,
+          email: this.eventManagerData.email,
+          phoneNumber: this.eventManagerData.phoneNumber || '', // Default to empty string if null
+          birthDate: this.eventManagerData.birthDate
+            ? new Date(this.eventManagerData.birthDate)
             : null,
-          gender: this.athleteData.gender || '',
-          address: this.athleteData.address || '',
-          sports: this.athleteData.sports || [],});
+          gender: this.eventManagerData.gender || '',
+          address: this.eventManagerData.address || '',
+          sports: this.eventManagerData.sports || [],});
   }
 
   onApplyChanges(): void {
@@ -94,7 +93,7 @@ console.log("athlete DATA IS ",this.athleteData);
     console.log('Profile updated:', updatedProfile);
 
     // Implement logic to save the changes to the backend
-    const userId = this.athleteData.userId; // Assuming the athlete data has a userId
+    const userId = this.eventManagerData.userId; // Assuming the athlete data has a userId
     const url = `http://localhost:8080/api/athletes/${userId}`; // Update with your API endpoint
 
     this.http.put(url, updatedProfile).pipe(

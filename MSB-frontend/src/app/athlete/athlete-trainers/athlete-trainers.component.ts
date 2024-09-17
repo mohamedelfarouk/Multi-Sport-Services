@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import {MatTabChangeEvent, MatTabsModule} from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenav, MatSidenavContainer, MatSidenavContent } from '@angular/material/sidenav';
@@ -23,6 +23,7 @@ import { AthleteTrainersBookTrainersComponent } from "./athlete-trainers-book-tr
   styleUrl: './athlete-trainers.component.css'
 })
 export class AthleteTrainersComponent {
+  @Input() athleteData:any;
 
   selectedTabIndex: number = 0;
 

@@ -16,18 +16,18 @@ export enum FacilityType {
     POOL_TABLE = 'POOL_TABLE'
   }
   
-  export interface Facilityint {
-    facilityId: number;
-    facilityName: string;
-    facilityType: FacilityType; // Use the enum here
-    address: string;
-    location: string;
-    phoneNumber: string;
-    email: string;
-    ratings: number;
-    amenities: string;
-    events: [],
-    bookings: [],
-    facilityManager:any
-  }
+  // export interface Facilityint {
+  //   facilityId: number;
+  //   facilityName: string;
+  //   facilityType: FacilityType; // Use the enum here
+  //   address: string;
+  //   location: string;
+  //   phoneNumber: string;
+  //   email: string;
+  //   ratings: number;
+  //   amenities: string;
+  //   events: [],
+  //   bookings: [],
+  //   facilityManager:any
+  // }
   

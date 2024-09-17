@@ -3,7 +3,12 @@
 body {
   background-color: #bec9c1;
   background-image: url("../../assets/images/transparentSports.png");
-  background-position: right center;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover; /* Ensures the background covers the entire viewport */
+  height: 100vh; /* Ensures the body takes up the full height of the viewport */
+  margin: 0;
+  padding: 0;
 }
 
 h1,
@@ -42,3 +47,4 @@ button:hover {
   cursor: pointer;
   background-color: gray;
 }
+
