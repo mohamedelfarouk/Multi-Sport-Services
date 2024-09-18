@@ -15,4 +15,5 @@ public class Trainer extends User {
 
     @ElementCollection(fetch = FetchType.LAZY)
     private Set<TrainerPackage> packages;
+
 }

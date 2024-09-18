@@ -45,7 +45,7 @@ export class AthleteEditProfileComponent implements OnInit {
 
   profileForm: FormGroup;
   sportsList= ['Football','Basketball'];
-  profilePicture: string | ArrayBuffer | null = "https://media.istockphoto.com/id/519998671/photo/serious-about-his-fitness.jpg?s=612x612&w=0&k=20&c=oO7B4UtkN-vSxrXTBMtChwc16g8ILoHQU0rh-EZElLY=";
+  profilePicture: string | ArrayBuffer | null = "https://th.bing.com/th/id/OIP.dBe41l9AV5lmJ9tpPLTgzwAAAA?rs=1&pid=ImgDetMain";
 
   constructor(
     private fb: FormBuilder,

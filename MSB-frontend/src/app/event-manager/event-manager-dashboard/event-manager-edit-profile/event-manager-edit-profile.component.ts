@@ -43,7 +43,6 @@ export class EventManagerEditProfileComponent implements OnInit {
   @Input() eventManagerData:any;
 
   profileForm: FormGroup;
-  sportsList= ['Football','Basketball'];
   profilePicture: string | ArrayBuffer | null = "https://media.istockphoto.com/id/519998671/photo/serious-about-his-fitness.jpg?s=612x612&w=0&k=20&c=oO7B4UtkN-vSxrXTBMtChwc16g8ILoHQU0rh-EZElLY=";
 
   constructor(
@@ -60,7 +59,6 @@ export class EventManagerEditProfileComponent implements OnInit {
       birthDate: [''],
       gender: [''],
       address: [''],
-      sports: [[]],
     });
   }
 
@@ -82,7 +80,7 @@ console.log("athlete DATA IS ",this.eventManagerData);
             : null,
           gender: this.eventManagerData.gender || '',
           address: this.eventManagerData.address || '',
-          sports: this.eventManagerData.sports || [],});
+      });
   }
 
   onApplyChanges(): void {
@@ -94,7 +92,7 @@ console.log("athlete DATA IS ",this.eventManagerData);
 
     // Implement logic to save the changes to the backend
     const userId = this.eventManagerData.userId; // Assuming the athlete data has a userId
-    const url = `http://localhost:8080/api/athletes/${userId}`; // Update with your API endpoint
+    const url = `http://localhost:8080/api/event-managers/${userId}`; // Update with your API endpoint
 
     this.http.put(url, updatedProfile).pipe(
       catchError((error) => {

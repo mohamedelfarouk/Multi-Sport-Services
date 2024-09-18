@@ -1,5 +1,6 @@
 package com.multi_sport.MSB_backend.controller;
 
+import com.multi_sport.MSB_backend.entity.Facility;
 import com.multi_sport.MSB_backend.entity.Trainer;
 import com.multi_sport.MSB_backend.repository.AthleteRepository;
 import com.multi_sport.MSB_backend.repository.EventManagerRepository;
@@ -75,7 +76,10 @@ public class TrainerController {
         return trainer.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
                       .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
-
+    @GetMapping("/search")
+    public List<Trainer> searchTrainers(@RequestParam("query") String query) {
+        return trainerRepository.searchTrainersByName(query);
+    }
     @PutMapping("/{id}")
     public ResponseEntity<?> updateTrainer(@PathVariable Long id, @RequestBody Trainer trainerDetails) {
         Optional<Trainer> optionalTrainer = trainerRepository.findById(id);

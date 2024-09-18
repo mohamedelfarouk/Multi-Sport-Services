@@ -2,7 +2,7 @@
     <div class="content">
       <mat-card class="card" appearance="outlined">
         <mat-card-header class="card-header-container">
-          <mat-card-title class="card-header">{{eventManager.firstName}} {{eventManager.lastName}}</mat-card-title>
+          <mat-card-title class="card-header">{{eventManagerData.firstName}} {{eventManagerData.lastName}}</mat-card-title>
           <img
             mat-card-sm-image
             src="https://media.istockphoto.com/id/519998671/photo/serious-about-his-fitness.jpg?s=612x612&w=0&k=20&c=oO7B4UtkN-vSxrXTBMtChwc16g8ILoHQU0rh-EZElLY="
@@ -14,37 +14,37 @@
             <mat-list>
               <mat-list-item>
                 <span matListItemTitle class="info-title">Username:</span>
-                <span matListItemLine class="info-line">{{eventManager.username}}</span>
+                <span matListItemLine class="info-line">{{eventManagerData.username}}</span>
               </mat-list-item>
     
               <mat-list-item>
                 <span matListItemTitle class="info-title">Email:</span>
-                <span class="info-line">{{ eventManager.email }} </span>
+                <span class="info-line">{{ eventManagerData.email }} </span>
               </mat-list-item>
               <mat-list-item>
                 <span matListItemTitle class="info-title">Phone:</span>
-                <span class="info-line"> {{eventManager.phoneNumber}}</span>
+                <span class="info-line"> {{eventManagerData.phoneNumber}}</span>
               </mat-list-item>
               <mat-list-item>
                 <span matListItemTitle class="info-title">Birth Date:</span>
-                <span class="info-line">{{eventManager.birthDate}}</span>
+                <span class="info-line">{{eventManagerData.birthDate}}</span>
               </mat-list-item>
               <mat-list-item>
                 <span matListItemTitle class="info-title">Gender:</span>
-                <span class="info-line"> {{eventManager.gender}}</span>
+                <span class="info-line"> {{eventManagerData.gender}}</span>
               </mat-list-item>
               <mat-list-item>
                 <span matListItemTitle class="info-title">Address:</span>
-                <span class="info-line"> {{eventManager.address}}</span>
+                <span class="info-line"> {{eventManagerData.address}}</span>
               </mat-list-item>
             </mat-list>
             <mat-list-item>
                 <span matListItemTitle class="info-title">Number of Followers:</span>
-                <span class="info-line"> {{eventManager.numFollowers}}</span>
+                <span class="info-line"> {{eventManagerData.numFollowers}}</span>
               </mat-list-item>
               <mat-list-item>
                 <span matListItemTitle class="info-title">Number of Following:</span>
-                <span class="info-line"> {{eventManager.numFollowing}}</span>
+                <span class="info-line"> {{eventManagerData.numFollowing}}</span>
               </mat-list-item>
           </div>
         </mat-card-content>

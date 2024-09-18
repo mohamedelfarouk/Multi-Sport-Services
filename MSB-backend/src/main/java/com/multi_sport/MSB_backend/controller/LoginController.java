@@ -16,6 +16,7 @@ import com.multi_sport.MSB_backend.repository.EventManagerRepository;
 import com.multi_sport.MSB_backend.repository.FacilityManagerRepository;
 import com.multi_sport.MSB_backend.repository.TrainerRepository;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
@@ -38,7 +39,7 @@ public class LoginController {
     private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     @PostMapping
-    public ResponseEntity<String> login(@RequestBody Map<String, String> loginData) {
+    public ResponseEntity<Map<String, Object>> login(@RequestBody Map<String, String> loginData) {
         String identifier = loginData.get("identifier");
         String password = loginData.get("password");
 
@@ -47,25 +48,29 @@ public class LoginController {
         if (userOptional.isPresent()) {
             User user = userOptional.get();
             if (passwordEncoder.matches(password, user.getPassword())) {
-                // Password is correct
+                // Password is correct, build response JSON
+                Map<String, Object> response = new HashMap<>();
+                response.put("userId", user.getUserId()); // Assuming user has a getId() method
                 if (user instanceof Athlete) {
-                    return new ResponseEntity<>("Redirect to Athlete Dashboard", HttpStatus.OK);
+                    response.put("role", "Athlete");
                 } else if (user instanceof EventManager) {
-                    return new ResponseEntity<>("Redirect to Event Manager Dashboard", HttpStatus.OK);
+                    response.put("role", "Event Manager");
                 } else if (user instanceof FacilityManager) {
-                    return new ResponseEntity<>("Redirect to Facility Manager Dashboard", HttpStatus.OK);
+                    response.put("role", "Facility Manager");
                 } else if (user instanceof Trainer) {
-                    return new ResponseEntity<>("Redirect to Trainer Dashboard", HttpStatus.OK);
+                    response.put("role", "Trainer");
                 } else {
-                    return new ResponseEntity<>("Unknown role", HttpStatus.INTERNAL_SERVER_ERROR);
+                    return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
                 }
+
+                return new ResponseEntity<>(response, HttpStatus.OK);
             } else {
                 // Password is incorrect
-                return new ResponseEntity<>("Incorrect password", HttpStatus.UNAUTHORIZED);
+                return new ResponseEntity<>(Map.of("error", "Incorrect password"), HttpStatus.UNAUTHORIZED);
             }
         } else {
             // User not found
-            return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(Map.of("error", "User not found"), HttpStatus.NOT_FOUND);
         }
     }
 

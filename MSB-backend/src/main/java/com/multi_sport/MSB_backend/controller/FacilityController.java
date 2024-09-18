@@ -38,7 +38,10 @@ public class FacilityController {
         return facility.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
                        .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
-
+    @GetMapping("/search")
+    public List<Facility> searchFacilities(@RequestParam("query") String query) {
+        return facilityRepository.searchFacilitiesByNameOrAddress(query);
+    }
     @PutMapping("/{id}")
     public ResponseEntity<Facility> updateFacility(@PathVariable Long id, @RequestBody Facility facilityDetails) {
         Optional<Facility> optionalFacility = facilityRepository.findById(id);

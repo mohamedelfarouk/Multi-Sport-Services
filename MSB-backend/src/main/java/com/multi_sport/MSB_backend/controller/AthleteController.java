@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.multi_sport.MSB_backend.entity.Athlete;
+import com.multi_sport.MSB_backend.entity.CartItem;
+
 import com.multi_sport.MSB_backend.repository.AthleteRepository;
 import com.multi_sport.MSB_backend.repository.EventManagerRepository;
 import com.multi_sport.MSB_backend.repository.FacilityManagerRepository;
@@ -127,6 +129,29 @@ public class AthleteController {
             if (athleteDetails.getSports() != null) {
                 athlete.setSports(athleteDetails.getSports());
             }
+
+            if (athleteDetails.getAddress() != null) {
+                athlete.setAddress(athleteDetails.getAddress());
+            }
+            if (athleteDetails.getBirthDate() != null) {
+                athlete.setBirthDate(athleteDetails.getBirthDate());
+            }
+            if (athleteDetails.getGender() != null) {
+                athlete.setGender(athleteDetails.getGender());
+            }
+            if (athleteDetails.getPhoneNumber() != null) {
+                athlete.setPhoneNumber(athleteDetails.getPhoneNumber());
+            }
+            if (athleteDetails.getPassword() != null) {
+                athlete.setPassword(athleteDetails.getPassword());
+            }
+            if (athleteDetails.getMyFacilities() != null) {
+                athlete.setMyFacilities(athleteDetails.getMyFacilities());
+            }
+            if (athleteDetails.getMyTrainers() != null) {
+                athlete.setMyTrainers(athleteDetails.getMyTrainers());
+            }
+
     
             Athlete updatedAthlete = athleteRepository.save(athlete);
             return new ResponseEntity<>(updatedAthlete, HttpStatus.OK);
@@ -134,7 +159,7 @@ public class AthleteController {
             return new ResponseEntity<>("Athlete not found", HttpStatus.NOT_FOUND);
         }
     }
-    
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteAthlete(@PathVariable Long id) {
@@ -166,5 +191,44 @@ public class AthleteController {
 
         return athlete.map(value -> new ResponseEntity<>(value.getUserId(), HttpStatus.OK))
                       .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+    @PostMapping("/{id}/cart")
+    public ResponseEntity<?> addItemToCart(@PathVariable Long id, @RequestBody CartItem cartItem) {
+        Optional<Athlete> optionalAthlete = athleteRepository.findById(id);
+
+        if (optionalAthlete.isPresent()) {
+            Athlete athlete = optionalAthlete.get();
+            athlete.getCartItems().add(cartItem);
+            athleteRepository.save(athlete);
+            return new ResponseEntity<>(athlete.getCartItems(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Athlete not found", HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @DeleteMapping("/{id}/cart/{itemId}")
+    public ResponseEntity<?> removeItemFromCart(@PathVariable Long id, @PathVariable Long itemId) {
+        Optional<Athlete> optionalAthlete = athleteRepository.findById(id);
+
+        if (optionalAthlete.isPresent()) {
+            Athlete athlete = optionalAthlete.get();
+            athlete.getCartItems().removeIf(item -> item.getId().equals(itemId));
+            athleteRepository.save(athlete);
+            return new ResponseEntity<>(athlete.getCartItems(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Athlete not found", HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/{id}/cart")
+    public ResponseEntity<?> getCartItems(@PathVariable Long id) {
+        Optional<Athlete> optionalAthlete = athleteRepository.findById(id);
+
+        if (optionalAthlete.isPresent()) {
+            Athlete athlete = optionalAthlete.get();
+            return new ResponseEntity<>(athlete.getCartItems(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Athlete not found", HttpStatus.NOT_FOUND);
+        }
     }
 }

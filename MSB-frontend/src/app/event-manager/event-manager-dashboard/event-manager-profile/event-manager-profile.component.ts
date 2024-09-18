@@ -9,7 +9,7 @@ import { MatListModule } from '@angular/material/list';
 
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { EventManagerComponent } from '../../event-manager.component';
+import { EventManagerDashboardComponent } from '../event-manager-dashboard.component';
 import { Router } from '@angular/router';
 import { EventManagerEditProfileComponent } from '../event-manager-edit-profile/event-manager-edit-profile.component';
 @Component({
